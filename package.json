@@ -8,6 +8,8 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "yarn workspaces run build",
+    "start": "yarn workspace @dlrg-swim/swim run start",
     "dev": "yarn workspace @dlrg-swim/swim run dev"
   }
 }
