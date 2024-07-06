@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
-      <body className="font-sans bg-gradient-to-r from-dlrg-red to-dlrg-blue">{children}</body>
+      <body className="font-sans bg-gradient-to-r from-dlrg-red from-25% via-dlrg-red to-dlrg-blue">{children}</body>
     </html>
   );
 }
