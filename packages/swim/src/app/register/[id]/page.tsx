@@ -10,9 +10,9 @@ export default async function RegisteredPage({ params }: { params: { id: string 
     return <div className="xl:mx-64 lg:mx-32 md:mx-16 mx-8 mt-4 mb-8">
         <header className="mb-4">
             <h1 className="lg:text-5xl text-2xl text-dlrg-blue font-extrabold">
-                Ihre Anmeldung ({params.id})
-                <small className="ms-2 font-semibold text-dlrg-black-100">
-                    bewahren sie folgende Informationen bei der Anmeldung griffbereit
+                Ihre Anmeldung
+                <small className="block font-semibold text-dlrg-black-100">
+                    Halten sie folgende Informationen bei der Anmeldung griffbereit
                 </small>
             </h1>
         </header>
