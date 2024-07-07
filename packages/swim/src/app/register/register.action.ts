@@ -19,7 +19,8 @@ export default async function registerAction(prevState: RegisterFormState, form:
             teamName: form.get('teamName')?.toString(),
             breakfast: form.get('breakfast') === "on",
             distanceRating: form.get('distanceRating') === "on",
-            publishName: form.get('publishName') === "on"
+            publishName: form.get('publishName') === "on",
+            status: "ANNOUNCED"
         })
         swimmerId = await addSwimmer(swimmer);
         console.log(swimmerId);
