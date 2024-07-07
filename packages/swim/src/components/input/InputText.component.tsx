@@ -25,7 +25,7 @@ export default function InputText(props: InputTextProps) {
             <input
                 type="text"
                 name={props.name}
-                className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-400 text-sm focus:ring-dlrg-blue-500 focus:border-dlrg-blue-500" placeholder={props.placeholder || ""}
+                className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-200 text-sm focus:ring-dlrg-blue focus:border-dlrg-blue" placeholder={props.placeholder || ""}
                 onChange={(evnt) => onChange(evnt.target.value)}
             />
             {props.validate && error ? <span className="block bg-dlrg-yellow rounded px-1 my-2">{props.conditionMessage}</span> : undefined}
