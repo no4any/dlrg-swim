@@ -17,45 +17,47 @@ export default async function RegisteredPage({ params }: { params: { id: string 
             </h1>
         </header>
         <main>
-            <div className="mb-4 text-center w-full">
-                <QrCode msg={`${BASE_PATH}/confirm/${params.id}`} />
+            <div className="mb-4 flex justify-center">
+                <div>
+                    <QrCode msg={`${BASE_PATH}/confirm/${params.id}`} />
+                </div>
             </div>
-            <table className="w-full table-auto">
+            <table className="w-full table-fixed border-separate border-spacing-2">
                 <tbody>
                     <tr>
-                        <th>Name</th>
+                        <th className="text-right">Name</th>
                         <td>{swimmer.lastName}</td>
                     </tr>
                     <tr>
-                        <th>Vorname</th>
+                        <th className="text-right">Vorname</th>
                         <td>{swimmer.firstName}</td>
                     </tr>
                     <tr>
-                        <th>E-Mail</th>
+                        <th className="text-right">E-Mail</th>
                         <td>{swimmer.email}</td>
                     </tr>
                     <tr>
-                        <th>Geburtstag</th>
-                        <td>{swimmer.birthday}</td>
+                        <th className="text-right">Geburtstag</th>
+                        <td>{swimmer.birthday || <i className="text-gray-700">Keine Angabe</i>}</td>
                     </tr>
                     <tr>
-                        <th>Stadt</th>
-                        <td>{swimmer.city}</td>
+                        <th className="text-right">Stadt</th>
+                        <td>{swimmer.city || <i className="text-gray-700">Keine Angabe</i>}</td>
                     </tr>
                     <tr>
-                        <th>Teamname</th>
-                        <td>{swimmer.teamName}</td>
+                        <th className="text-right">Teamname</th>
+                        <td>{swimmer.teamName || <i className="text-gray-700">Keine Angabe</i>}</td>
                     </tr>
                     <tr>
-                        <th>Frühstück</th>
+                        <th className="text-right">Frühstück</th>
                         <td>{swimmer.breakfast ? "Ja" : "Nein"}</td>
                     </tr>
                     <tr>
-                        <th>Distanzwertung</th>
+                        <th className="text-right">Distanzwertung</th>
                         <td>{swimmer.distanceRating ? "Ja" : "Nein"}</td>
                     </tr>
                     <tr>
-                        <th>Name für Leistungen anzeigen</th>
+                        <th className="text-right">Name für Leistungen anzeigen</th>
                         <td>{swimmer.publishName ? "Ja" : "Nein"}</td>
                     </tr>
                 </tbody>
