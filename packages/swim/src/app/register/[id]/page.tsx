@@ -17,10 +17,10 @@ export default async function RegisteredPage({ params }: { params: { id: string 
             </h1>
         </header>
         <main>
-            <div className="mb-4">
+            <div className="mb-4 text-center w-full">
                 <QrCode msg={`${BASE_PATH}/confirm/${params.id}`} />
             </div>
-            <table className="w-full table-auto border-collapse border border-slate-500">
+            <table className="w-full table-auto">
                 <tbody>
                     <tr>
                         <th>Name</th>
