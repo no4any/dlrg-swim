@@ -19,7 +19,8 @@ export const SwimmerSchema = z.object({
     breakfast: z.boolean().optional(),
     optIn: z.boolean().optional(),
     publishName: z.boolean().optional(),
-    distanceEntries: z.array(DistanceEntrySchema).optional()
+    distanceEntries: z.array(DistanceEntrySchema).optional(),
+    informAboutUpcommingEvents: z.boolean().optional(), // TODO: Im Frontend einbauen!!!!
 })
 
 type Swimmer = z.infer<typeof SwimmerSchema>

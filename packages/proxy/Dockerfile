@@ -1,6 +1,5 @@
 FROM node:slim
 COPY . /app
 WORKDIR /app
-RUN yarn
-RUN yarn build
+RUN yarn && yarn build
 ENTRYPOINT [ "yarn", "start" ]

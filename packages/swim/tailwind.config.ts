@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        print: { raw: 'print' },
+        screen: { raw: 'screen' }
+      },
       colors: {
         "dlrg-red": {
           950: "#e61d28",

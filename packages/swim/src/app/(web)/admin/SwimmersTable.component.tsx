@@ -6,6 +6,8 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
+import deleteAction from "./[id]/delete.action";
+import { redirect, useRouter } from "next/navigation";
 
 export interface SwimmersTableProps {
     swimmers: Swimmer[]
@@ -15,6 +17,8 @@ export default function SwimmersTable({ swimmers }: SwimmersTableProps) {
     const [asc, setAsc] = useState(true);
     const [orderByField, setOrderByField] = useState<keyof Swimmer>("lastName");
     const [sortedSwimmers, setSortedSwimmers] = useState<Swimmer[]>(swimmers);
+
+    const router = useRouter();
 
     function orderBy(field: keyof Swimmer) {
         if (field === orderByField) {
@@ -59,9 +63,8 @@ export default function SwimmersTable({ swimmers }: SwimmersTableProps) {
                 <td></td>
                 <td></td>
                 <td className="text-right">
-                    <button className="bg-dlrg-blue rounded-lg p-2"><PencilSquareIcon className="size-4" /></button>
+                    <button className="bg-dlrg-blue rounded-lg p-2" onClick={() => router.push(`/admin/${swimmer._id}`)}><PencilSquareIcon className="size-4" /></button>
                     <button className="bg-dlrg-yellow rounded-lg p-2 mx-2"><TagIcon className="size-4" /></button>
-                    <button className="bg-dlrg-red rounded-lg p-2"><TrashIcon className="size-4" /></button>
                 </td>
             </tr>)}
         </tbody>
