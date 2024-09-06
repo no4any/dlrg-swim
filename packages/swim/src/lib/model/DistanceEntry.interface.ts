@@ -1,6 +1,7 @@
 import { z } from "zod"
 
 export const DistanceEntrySchema = z.object({
+    swimmerId: z.string(),
     nr: z.number(),
     deactivated: z.boolean().optional(),
     createdAt: z.number(),

@@ -9,7 +9,8 @@ import { useFormState } from "react-dom"
 import { z } from "zod"
 
 export interface RegisterFormState {
-    checkInput?: boolean
+    checkInput?: boolean,
+    mailAlreadyInUse?: boolean
 }
 
 function textCondition(value: string): boolean {
@@ -34,6 +35,7 @@ export default function RegisterForm() {
     const [state, formAction] = useFormState<RegisterFormState, FormData>(registerAction, {})
 
     return <form action={formAction}>
+        {state.mailAlreadyInUse?<div>Mit der E-Mail wurde brereits eine Anmeldung vollzogen</div>:undefined}
         <div className="grid lg:grid-cols-2 gap-4 mb-4">
             <InputText name="name" title="Name" validate={state.checkInput} conditionMessage={TEXT_CONDITION_MESSAGE} condition={textCondition} />
             <InputText name="prename" title="Vorname" validate={state.checkInput} conditionMessage={TEXT_CONDITION_MESSAGE} condition={textCondition} />

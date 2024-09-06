@@ -5,6 +5,7 @@ import addSwimmer from "@/lib/mongo/operations/addSwimmer";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { RegisterFormState } from "./RegisterForm.component";
+import mailAlreadyExists from "@/lib/mongo/operations/mailAlreadyExits";
 
 export default async function registerAction(prevState: RegisterFormState, form: FormData): Promise<RegisterFormState> {
     console.log(form);
@@ -13,7 +14,7 @@ export default async function registerAction(prevState: RegisterFormState, form:
         const swimmer: Swimmer = SwimmerSchema.parse({
             lastName: form.get('name')?.toString() || "",
             firstName: form.get('prename')?.toString() || "",
-            email: form.get('email')?.toString() || "",
+            email: (form.get('email')?.toString() || "").toLowerCase(),
             birthday: form.get('birthday')?.toString() || undefined,
             city: form.get('city')?.toString(),
             teamName: form.get('teamName')?.toString(),
@@ -22,6 +23,12 @@ export default async function registerAction(prevState: RegisterFormState, form:
             publishName: form.get('publishName') === "on",
             status: "ANNOUNCED"
         })
+        if (await mailAlreadyExists(swimmer.email)) {
+            return {
+                checkInput: true,
+                mailAlreadyInUse: true
+            }
+        }
         swimmerId = await addSwimmer(swimmer);
         console.log(swimmerId);
     } catch (e) {

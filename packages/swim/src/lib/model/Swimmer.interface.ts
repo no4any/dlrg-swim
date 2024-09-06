@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { DistanceEntrySchema } from "./DistanceEntry.interface";
 import { ObjectId } from "mongodb";
 
 export const SWIMMER_STATE_ANNOUNCED = "ANNOUNCED";
@@ -14,12 +13,11 @@ export const SwimmerSchema = z.object({
     lastName: z.string().min(2),
     city: z.string().optional(),
     distanceRating: z.boolean().optional(),
-    birthday: z.string().date().optional(),
+    birthday: z.string().date().nullable().optional(),
     teamName: z.string().optional(),
     breakfast: z.boolean().optional(),
     optIn: z.boolean().optional(),
     publishName: z.boolean().optional(),
-    distanceEntries: z.array(DistanceEntrySchema).optional(),
     informAboutUpcommingEvents: z.boolean().optional(), // TODO: Im Frontend einbauen!!!!
 })
 

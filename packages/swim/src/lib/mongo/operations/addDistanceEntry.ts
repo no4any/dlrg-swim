@@ -1,9 +1,10 @@
-import { ObjectId } from "mongodb";
-import getSwimmersCollection from "../getSwimmersCollection";
 import DistanceEntry from "@/lib/model/DistanceEntry.interface";
+import getDistancesCollection from "../getDistancesCollection";
+import autoIncrement from "./autoIncrement";
 
-export default async function addDistanceEntry(swimmerId: ObjectId, entry: DistanceEntry): Promise<number> {
-    const collection = await getSwimmersCollection();
-    const result = await collection.updateOne({ _id: swimmerId }, { $push: { distanceEntries: entry } });
-    return result.matchedCount;
+export default async function addDistanceEntry(entry: DistanceEntry): Promise<number> {
+    const distanceCollection = await getDistancesCollection();
+    entry.nr = await autoIncrement("distance");
+    distanceCollection.insertOne(entry);
+    return entry.nr;
 }

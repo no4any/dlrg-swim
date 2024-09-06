@@ -1,13 +1,9 @@
 "use client"
 
 import Swimmer from "@/lib/model/Swimmer.interface"
-import { ChevronDoubleDownIcon, TagIcon } from "@heroicons/react/24/outline";
-import { TrashIcon } from "@heroicons/react/24/outline";
-import { PencilSquareIcon } from "@heroicons/react/24/outline";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
-import deleteAction from "./[id]/delete.action";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs";
 
 export interface SwimmersTableProps {
     swimmers: Swimmer[]
@@ -47,9 +43,9 @@ export default function SwimmersTable({ swimmers }: SwimmersTableProps) {
     return <table className="table-auto w-full text-left">
         <thead>
             <tr>
-                <th><button onClick={() => orderBy("lastName")}>Name {orderByField === "lastName" ? asc ? <ChevronUpIcon /> : <ChevronDownIcon /> : undefined}</button></th>
-                <th><button onClick={() => orderBy("firstName")}>Vorname {orderByField === "firstName" ? asc ? <ChevronUpIcon /> : <ChevronDownIcon /> : undefined}</button></th>
-                <th><button onClick={() => orderBy("status")}>Status {orderByField === "status" ? asc ? <ChevronUpIcon /> : <ChevronDownIcon /> : undefined}</button></th>
+                <th><button onClick={() => orderBy("lastName")}>Name {orderByField === "lastName" ? asc ? <BsChevronCompactDown /> : <BsChevronCompactUp /> : undefined}</button></th>
+                <th><button onClick={() => orderBy("firstName")}>Vorname {orderByField === "firstName" ? asc ? <BsChevronCompactDown /> : <BsChevronCompactUp /> : undefined}</button></th>
+                <th><button onClick={() => orderBy("status")}>Status {orderByField === "status" ? asc ? <BsChevronCompactDown /> : <BsChevronCompactUp /> : undefined}</button></th>
                 <th>Kappe</th>
                 <th>Bändchen</th>
                 <th className="text-right">Aktionen</th>
@@ -63,8 +59,8 @@ export default function SwimmersTable({ swimmers }: SwimmersTableProps) {
                 <td></td>
                 <td></td>
                 <td className="text-right">
-                    <button className="bg-dlrg-blue rounded-lg p-2" onClick={() => router.push(`/admin/${swimmer._id}`)}><PencilSquareIcon className="size-4" /></button>
-                    <button className="bg-dlrg-yellow rounded-lg p-2 mx-2"><TagIcon className="size-4" /></button>
+                    <button className="bg-dlrg-blue rounded-lg p-2" onClick={() => router.push(`/admin/${swimmer._id}`)}>Bearbeiten</button>
+                    <button className="bg-dlrg-yellow rounded-lg p-2 mx-2">Irgendwas</button>
                 </td>
             </tr>)}
         </tbody>

@@ -6,7 +6,7 @@ export default async function autoIncrement(counterName: string) {
 
     const toCheck = await collection.findOne({ _id: counterName });
 
-    if (toCheck === null) {
+    if (!toCheck) {
         collection.insertOne({
             name: counterName,
             value: 0
