@@ -1,11 +1,21 @@
 import QrCode from "@/components/QrCode.component";
+import hash from "@/lib/hash";
 import getSwimmer from "@/lib/mongo/operations/getSwimmer"
 import { BASE_PATH } from "@/lib/params";
+import { notFound } from "next/navigation";
 
-export default async function RegisteredPage({ params }: { params: { id: string } }) {
+export default async function RegisteredPage({ params }: { params: { id: string, hash: string } }) {
+    if (hash(params.id) !== decodeURIComponent(params.hash)) {
+        return <div>Falsche Seite
+            <br/>Hashed:{hash(params.id)}
+            <br/>Got:{params.hash}</div>
+    }
+
     const swimmer = await getSwimmer(params.id);
 
-    console.log(swimmer);
+    if (swimmer === null) {
+        notFound();
+    }
 
     return <div className="xl:mx-64 lg:mx-32 md:mx-16 mx-8 mt-4 mb-8">
         <header className="mb-4">
@@ -19,7 +29,8 @@ export default async function RegisteredPage({ params }: { params: { id: string 
         <main>
             <div className="mb-4 flex justify-center">
                 <div>
-                    <QrCode msg={`${BASE_PATH}/confirm/${params.id}`} />
+                    <QrCode msg={`${BASE_PATH}/admin/${params.id}/register`} />
+                    <div><a href={`/admin/${params.id}/register`}>Anmelden</a></div>
                 </div>
             </div>
             <table className="w-full table-fixed border-separate border-spacing-2">

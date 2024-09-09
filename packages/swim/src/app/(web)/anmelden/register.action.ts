@@ -6,9 +6,9 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { RegisterFormState } from "./RegisterForm.component";
 import mailAlreadyExists from "@/lib/mongo/operations/mailAlreadyExits";
+import hash from "@/lib/hash";
 
-export default async function registerAction(prevState: RegisterFormState, form: FormData): Promise<RegisterFormState> {
-    console.log(form);
+export default async function registerAction(_prevState: RegisterFormState, form: FormData): Promise<RegisterFormState> {
     let swimmerId = "---";
     try {
         const swimmer: Swimmer = SwimmerSchema.parse({
@@ -30,10 +30,12 @@ export default async function registerAction(prevState: RegisterFormState, form:
             }
         }
         swimmerId = await addSwimmer(swimmer);
-        console.log(swimmerId);
     } catch (e) {
         return { checkInput: true }
     }
-    revalidatePath(`/register/${swimmerId}`)
-    redirect(`/register/${swimmerId}`);
+
+    const newPath = `/anmelden/${swimmerId}/${hash(swimmerId)}`
+    console.log(newPath);
+    revalidatePath(newPath);
+    redirect(newPath);
 }

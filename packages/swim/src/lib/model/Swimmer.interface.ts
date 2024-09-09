@@ -18,6 +18,9 @@ export const SwimmerSchema = z.object({
     breakfast: z.boolean().optional(),
     optIn: z.boolean().optional(),
     publishName: z.boolean().optional(),
+    capColor: z.string().optional(),
+    capNr: z.number().optional(),
+    regNr: z.number().optional(),
     informAboutUpcommingEvents: z.boolean().optional(), // TODO: Im Frontend einbauen!!!!
 })
 
