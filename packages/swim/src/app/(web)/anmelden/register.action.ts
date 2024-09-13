@@ -17,7 +17,7 @@ export default async function registerAction(_prevState: RegisterFormState, form
             email: (form.get('email')?.toString() || "").toLowerCase(),
             birthday: form.get('birthday')?.toString() || undefined,
             city: form.get('city')?.toString(),
-            teamName: form.get('teamName')?.toString(),
+            teamId: form.get('teamName')?.toString(),
             breakfast: form.get('breakfast') === "on",
             distanceRating: form.get('distanceRating') === "on",
             publishName: form.get('publishName') === "on",

@@ -9,6 +9,7 @@ export const MONGO_CONNECTION = env.MONGO_CONNECTION || "mongodb://localhost:270
 export const MONGO_SWIMMERS_DATABASE = env.MONGO_SWIMMERS_DATABASE || "swimmers";
 export const MONGO_SWIMMERS_COLLECTION = env.MONGO_SWIMMERS_COLLECTION || "swimmers";
 export const MONGO_DISTANCES_COLLECTION = env.MONGO_DISTANCES_COLLECTION || "distances";
+export const MONGO_TEAMS_COLLECTION = env.MONGO_TEAMS_COLLECTION || "teams";
 export const MONGO_COUNTERS_COLLECTION = env.MONGO_COUNTERS_COLLECTION || "counters";
 
 export const HASH_SALT = env.HASH_SALT || "salt123";
