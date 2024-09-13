@@ -3,7 +3,7 @@
 import InputCheckbox from "@/components/input/InputCheckbox.component"
 import InputDate from "@/components/input/InputDate.component"
 import InputText from "@/components/input/InputText.component"
-import ButtonSubmit from "./ButtonSubmit.component"
+import ButtonSubmit from "../../../components/input/ButtonSubmit.component"
 import registerAction from "./register.action"
 import { useFormState } from "react-dom"
 import { z } from "zod"
