@@ -6,9 +6,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import mailAlreadyExists from "@/lib/mongo/operations/mailAlreadyExits";
 import hash from "@/lib/hash";
-import Team, { TeamSchema } from "@/lib/model/Team.interface";
-import addTeam from "@/lib/mongo/operations/addTeam";
-import updateSwimmerTeam from "@/lib/mongo/operations/updateSwimmerTeam";
 import getMongoClient from "@/lib/mongo/getMongoClient";
 import SwimErrorNoSwimmer from "@/lib/error/SwimErrorNoSwimmer";
 import { TeamRegisterFormState } from "./TeamRegisterForm.component";
@@ -49,18 +46,6 @@ export default async function teamRegisterAction(_prevState: TeamRegisterFormSta
         }
 
         swimmerId = await addSwimmer(swimmer);
-
-        if (form.get("addTeam") === "on" && form.get("teamName")) {
-            const team: Team = TeamSchema.parse({
-                name: form.get('teamName'),
-                lowerName: form.get('teamName')?.toString().toLowerCase(),
-                owner: swimmerId
-            });
-
-            const teamId = await addTeam(team);
-
-            updateSwimmerTeam(swimmerId, teamId);
-        }
     } catch (e) {
         await session.abortTransaction();
         return { checkInput: true }
