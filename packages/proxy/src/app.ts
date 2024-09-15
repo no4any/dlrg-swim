@@ -21,10 +21,13 @@ proxy.use(PROXY_PATH_PREFIX, createProxyMiddleware({
     target: PROXY_TARGET
 }))
 
-const httpServer = http.createServer(proxy);
+const httpServer = http.createServer((req, res) => {
+    res.writeHead(302, {
+        location: "https://karry.digital"
+     })
+     res.end();
+});
 httpServer.listen(80);
 
-/*
 const httpsServer = https.createServer(credentials, proxy);
 httpsServer.listen(443);
-*/
