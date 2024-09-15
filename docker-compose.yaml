@@ -26,6 +26,7 @@ services:
       PROXY_TARGET: http://next:3000
       PRIVATE_KEY_PATH: /
       CERTIFICATE_PATH: /
+      HTTP_REDIRECT_LOCATION: http://www.google.com
     depends_on:
       - next
   mongo:
