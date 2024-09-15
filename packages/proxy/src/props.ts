@@ -4,3 +4,4 @@ export const PROXY_PATH_PREFIX = process.env.PROXY_PATH_PREFIX || '';
 
 export const PRIVATE_KEY_PATH = process.env.PRIVATE_KEY_PATH || "/data/cert/privkey.pem";
 export const CERTIFICATE_PATH = process.env.CERTIFICATE_PATH || "/data/cert/cert.pem";
+export const HTTP_REDIRECT_LOCATION = process.env.HTTP_REDIRECT_LOCATION || "https://www.google.de"

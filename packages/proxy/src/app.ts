@@ -3,9 +3,8 @@ import fs from "fs";
 import http from "http";
 import https from "https";
 import { createProxyMiddleware } from "http-proxy-middleware";
-import { CERTIFICATE_PATH, PRIVATE_KEY_PATH, PROXY_PATH_PREFIX, PROXY_TARGET } from "./props";
+import { CERTIFICATE_PATH, HTTP_REDIRECT_LOCATION, PRIVATE_KEY_PATH, PROXY_PATH_PREFIX, PROXY_TARGET } from "./props";
 
-/*
 const privateKey  = fs.readFileSync(PRIVATE_KEY_PATH, 'utf8');
 const certificate = fs.readFileSync(CERTIFICATE_PATH, 'utf8');
 
@@ -13,7 +12,6 @@ const credentials = {
     key: privateKey,
     cert: certificate
 };
-*/
 
 const proxy = express();
 
@@ -21,9 +19,9 @@ proxy.use(PROXY_PATH_PREFIX, createProxyMiddleware({
     target: PROXY_TARGET
 }))
 
-const httpServer = http.createServer((req, res) => {
+const httpServer = http.createServer((_req, res) => {
     res.writeHead(302, {
-        location: "https://karry.digital"
+        location: HTTP_REDIRECT_LOCATION
      })
      res.end();
 });
