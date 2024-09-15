@@ -13,8 +13,6 @@ services:
       MONGO_USERNAME: root
       MONGO_PASSWORD: example
       MONGO_CONNECTION: mongodb://mongo:27017
-    ports:
-      - 3000:3000
     depends_on:
       - mongo
   proxy:
@@ -22,9 +20,12 @@ services:
       context: packages/proxy
     restart: always
     ports: 
-      - 8080:8080
+      - 80:80
+      - 443:443
     environment:
       PROXY_TARGET: http://next:3000
+      PRIVATE_KEY_PATH: /
+      CERTIFICATE_PATH: /
     depends_on:
       - next
   mongo:

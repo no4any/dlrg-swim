@@ -57,7 +57,7 @@ export default async function RegisteredPage({ params }: { params: { id: string,
                     </tr>
                     <tr>
                         <th className="text-right">Teamname</th>
-                        <td>{swimmer.teamName || <i className="text-gray-700">Keine Angabe</i>}</td>
+                        <td>{swimmer.teamId || <i className="text-gray-700">Keine Angabe</i>}</td>
                     </tr>
                     <tr>
                         <th className="text-right">Frühstück</th>
