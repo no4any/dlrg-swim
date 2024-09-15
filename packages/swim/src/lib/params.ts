@@ -13,3 +13,10 @@ export const MONGO_TEAMS_COLLECTION = env.MONGO_TEAMS_COLLECTION || "teams";
 export const MONGO_COUNTERS_COLLECTION = env.MONGO_COUNTERS_COLLECTION || "counters";
 
 export const HASH_SALT = env.HASH_SALT || "salt123";
+
+export const SMTP_HOST = env.SMTP_HOST || "mail.dlrg.de";
+export const SMTP_PORT = parseInt(env.SMTP_PORT || "465") || 465;
+export const SMTP_SECURE = SMTP_PORT === 465;
+export const SMTP_USERNAME = "";
+export const SMTP_PASSWORD = "";
+export const SMTP_FROM = env.SMTP_FROM || '"DLRG Gießen 24h Schwimmen" <martin.karry@giessen.dlrg.de>';

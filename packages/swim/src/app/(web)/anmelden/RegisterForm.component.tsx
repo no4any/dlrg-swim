@@ -61,6 +61,7 @@ export default function RegisterForm() {
             <InputCheckbox name="breakfast" title="Möchten Sie Frühstück" />
             <InputCheckbox name="distanceRating" title="Möchten Sie an der Distanzwertung teilnehmen" />
             <InputCheckbox name="publishName" title="Ich bin damit einverstanden, dass mein Name mit meinen Leistungen veröffentlicht wird" />
+            <InputCheckbox name="newsletter" title="Ich möchte über zukünftige Veranstaltungen per Mail informiert werden" />
         </div>
         <div className="grid grid-cols-1 gap-4">
             <div>

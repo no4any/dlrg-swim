@@ -9,6 +9,9 @@ import hash from "@/lib/hash";
 import getMongoClient from "@/lib/mongo/getMongoClient";
 import SwimErrorNoSwimmer from "@/lib/error/SwimErrorNoSwimmer";
 import { TeamRegisterFormState } from "./TeamRegisterForm.component";
+import mail from "@/lib/mail";
+import textForRegMail from "@/lib/textForRegMail";
+import { BASE_PATH } from "@/lib/params";
 
 async function formToSchwimmer(form: FormData): Promise<Swimmer> {
     try {
@@ -22,6 +25,7 @@ async function formToSchwimmer(form: FormData): Promise<Swimmer> {
             breakfast: form.get('breakfast') === "on",
             distanceRating: form.get('distanceRating') === "on",
             publishName: form.get('publishName') === "on",
+            newsletter: form.get('newsletter') === "on",
             status: "ANNOUNCED"
         });
     } catch(e) {
@@ -46,6 +50,7 @@ export default async function teamRegisterAction(_prevState: TeamRegisterFormSta
         }
 
         swimmerId = await addSwimmer(swimmer);
+        mail(swimmer.email, textForRegMail(`${BASE_PATH}/anmelden/${swimmerId}/${hash(swimmerId)}`));
     } catch (e) {
         await session.abortTransaction();
         return { checkInput: true }

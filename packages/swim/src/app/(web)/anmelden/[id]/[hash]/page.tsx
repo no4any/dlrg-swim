@@ -88,7 +88,7 @@ export default async function RegisteredPage({ params }: { params: { id: string,
                     </tr>
                     <tr>
                         <th className="text-right">Teamname</th>
-                        <td>{`${team?.name} ${isTeamLeader?"(Teamleiter)":undefined}` || <i className="text-gray-700">Keine Angabe</i>}</td>
+                        <td>{swimmer.teamId ?`${team?.name} ${isTeamLeader?"(Teamleiter)":undefined}` : <i className="text-gray-700">Keine Angabe</i>}</td>
                     </tr>
                     <tr>
                         <th className="text-right">Frühstück</th>
@@ -101,6 +101,10 @@ export default async function RegisteredPage({ params }: { params: { id: string,
                     <tr>
                         <th className="text-right">Name für Leistungen anzeigen</th>
                         <td>{swimmer.publishName ? "Ja" : "Nein"}</td>
+                    </tr>
+                    <tr>
+                        <th className="text-right">Ich möchte über zukünftige Veranstaltungen informiert werden</th>
+                        <td>{swimmer.newsletter ? "Ja" : "Nein"}</td>
                     </tr>
                 </tbody>
             </table>

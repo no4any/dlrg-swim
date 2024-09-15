@@ -21,7 +21,7 @@ export const SwimmerSchema = z.object({
     capColor: z.string().optional(),
     capNr: z.number().optional(),
     regNr: z.number().optional(),
-    informAboutUpcommingEvents: z.boolean().optional(), // TODO: Im Frontend einbauen!!!!
+    newsletter: z.boolean().optional(),
 })
 
 type Swimmer = z.infer<typeof SwimmerSchema>
