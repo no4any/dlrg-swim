@@ -5,6 +5,9 @@ import fs from "fs";
 const TEAMS_FILE = "/data/teams.json";
 const SWIMMERS_FILE = "/data/swimmers.json";
 
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const scol = await getSwimmersCollection();
   const sJson= JSON.stringify(scol.find({}).toArray());
