@@ -1,20 +1,30 @@
 import QrCode from "@/components/QrCode.component";
 import hash from "@/lib/hash";
 import getSwimmer from "@/lib/mongo/operations/getSwimmer"
+import getTeam from "@/lib/mongo/operations/getTeam";
 import { BASE_PATH } from "@/lib/params";
 import { notFound } from "next/navigation";
 
 export default async function RegisteredPage({ params }: { params: { id: string, hash: string } }) {
-    if (hash(params.id) !== decodeURIComponent(params.hash)) {
+    if (hash(params.id) !== params.hash) {
         return <div>Falsche Seite
-            <br/>Hashed:{hash(params.id)}
-            <br/>Got:{params.hash}</div>
+            <br />Hashed:{hash(params.id)}
+            <br />Got:{params.hash}
+        </div>
     }
 
     const swimmer = await getSwimmer(params.id);
 
     if (swimmer === null) {
         notFound();
+    }
+
+    let team = null;
+    let teamLink = undefined;
+    if (swimmer.teamId) {
+        team = await getTeam(swimmer.teamId);
+        const teamId = team?._id?.toString() || "null";
+        teamLink = `${BASE_PATH}/team/${teamId}/${hash(teamId)}`;
     }
 
     return <div className="xl:mx-64 lg:mx-32 md:mx-16 mx-8 mt-4 mb-8">
@@ -28,11 +38,14 @@ export default async function RegisteredPage({ params }: { params: { id: string,
         </header>
         <main>
             <div className="mb-4 flex justify-center">
-                <div>
-                    <QrCode msg={`${BASE_PATH}/admin/${params.id}/register`} />
-                    <div><a href={`/admin/${params.id}/register`}>Anmelden</a></div>
-                </div>
+                <QrCode msg={`${BASE_PATH}/admin/${params.id}/register`} />
             </div>
+            {teamLink ? <div className="mb-4 flex justify-center">
+                <div>
+                    <QrCode msg={teamLink} />
+                    <div className="text-center"><a href={teamLink}>Link um weitere Teammitglieder anzumelden</a></div>
+                </div>
+            </div> : undefined}
             <table className="w-full table-fixed border-separate border-spacing-2">
                 <tbody>
                     <tr>
@@ -57,7 +70,7 @@ export default async function RegisteredPage({ params }: { params: { id: string,
                     </tr>
                     <tr>
                         <th className="text-right">Teamname</th>
-                        <td>{swimmer.teamId || <i className="text-gray-700">Keine Angabe</i>}</td>
+                        <td>{team?.name || <i className="text-gray-700">Keine Angabe</i>}</td>
                     </tr>
                     <tr>
                         <th className="text-right">Frühstück</th>
