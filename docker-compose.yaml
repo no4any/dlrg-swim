@@ -13,7 +13,7 @@ services:
       SMTP_PORT: 993
       SMTP_USERNAME: user
       SMTP_PASSWORD: password
-      SMTP_FROM: '"DLRG Gießen 24h Schwimmen" <martin.karry@giessen.dlrg.de>' 
+      SMTP_FROM: '"DLRG Gießen 24h Schwimmen" <user@mail.de>' 
     depends_on:
       - mongo
   proxy:
