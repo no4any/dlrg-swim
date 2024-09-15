@@ -9,10 +9,7 @@ import { notFound } from "next/navigation";
 
 export default async function RegisteredPage({ params }: { params: { id: string, hash: string } }) {
     if (hash(params.id) !== params.hash) {
-        return <div>Falsche Seite
-            <br />Hashed:{hash(params.id)}
-            <br />Got:{params.hash}
-        </div>
+        notFound();
     }
 
     const swimmer = await getSwimmer(params.id);
@@ -29,7 +26,7 @@ export default async function RegisteredPage({ params }: { params: { id: string,
     if (swimmer.teamId) {
         team = await getTeam(swimmer.teamId);
         const teamId = team?._id?.toString() || "null";
-        teamLink = `${BASE_PATH}/team/${teamId}/${hash(teamId)}`;
+        teamLink = `${BASE_PATH}/anmelden/team/${teamId}/${hash(teamId)}`;
 
         if (swimmer._id?.toString() === team?.owner.toString()) {
             isTeamLeader = true;
@@ -45,13 +42,19 @@ export default async function RegisteredPage({ params }: { params: { id: string,
                     Halten sie folgende Informationen bei der Anmeldung griffbereit.
                 </small>
                 <small className="block font-semibold text-dlrg-black-100 mt-4">
-                    Speichern sie wenn möglich diese Seite.
+                    Speichern sie wenn möglich diese Seite in Ihren Favoriten ab.
                 </small>
             </h1>
         </header>
         <main>
+            <div className="mb-4 justify-center">
+                <h2 className="text-2xl text-center font-extrabold">Bei der Anmeldung vorzeigen (ausgedruckt oder auf Smartphone)</h2>
+            </div>
             <div className="mb-4 flex justify-center">
                 <QrCode msg={`${BASE_PATH}/admin/${params.id}/register`} />
+            </div>
+            <div className="mb-4 justify-center">
+                <h2 className="text-2xl text-center font-extrabold">Teilen Sie diesen Link oder den QR-Code mit ihren Teammitglieder damit diese sich für das Team anmelden können</h2>
             </div>
             {teamLink ? <div className="mb-4 flex justify-center">
                 <div>
@@ -88,7 +91,7 @@ export default async function RegisteredPage({ params }: { params: { id: string,
                     </tr>
                     <tr>
                         <th className="text-right">Teamname</th>
-                        <td>{swimmer.teamId ?`${team?.name} ${isTeamLeader?"(Teamleiter)":undefined}` : <i className="text-gray-700">Keine Angabe</i>}</td>
+                        <td>{swimmer.teamId ? `${team?.name} ${isTeamLeader ? "(Teamleiter)" : undefined}` : <i className="text-gray-700">Keine Angabe</i>}</td>
                     </tr>
                     <tr>
                         <th className="text-right">Frühstück</th>
