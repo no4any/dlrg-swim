@@ -44,7 +44,7 @@ export default function TeamRegisterForm({id, hash}: TeamRegisterFormProps) {
         <input type="hidden" name="teamId" value={id} />
         <input type="hidden" name="hash" value={hash} />
         {state.mailAlreadyInUse ? <div>Mit der E-Mail wurde brereits eine Anmeldung vollzogen</div> : undefined}
-        {state.hashMatchError ? <div>Sie sind nicht autorisiert sich hier anzumelden.</div> : undefined}
+        {state.hashMatchError ? <div>Sie sind nicht autorisiert sich dieses Team anzumelden.</div> : undefined}
         <div className="grid lg:grid-cols-2 gap-4 mb-4">
             <InputText name="name" title="Name" validate={state.checkInput} conditionMessage={TEXT_CONDITION_MESSAGE} condition={textCondition} />
             <InputText name="prename" title="Vorname" validate={state.checkInput} conditionMessage={TEXT_CONDITION_MESSAGE} condition={textCondition} />
