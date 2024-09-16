@@ -1,5 +1,5 @@
+import RegisterForm from "@/components/forms/registrationForm/RegistrationForm";
 import { Metadata } from "next";
-import RegisterForm from "./RegisterForm.component";
 
 export const metadata: Metadata = {
     title: "DLRG Gießen: Anmeldung 24 Stunden Schwimmen",
