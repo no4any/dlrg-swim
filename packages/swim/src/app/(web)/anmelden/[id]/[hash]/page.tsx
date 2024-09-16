@@ -57,7 +57,7 @@ export default async function RegisteredPage({ params }: { params: { id: string,
                 <h2 className="text-2xl text-center font-extrabold">Bei der Anmeldung vorzeigen (ausgedruckt oder auf Smartphone)</h2>
             </div>
             <div className="mb-4 flex justify-center">
-                <QrCode msg={`${BASE_PATH}/admin/${params.id}/register`} />
+                <QrCode msg={`${BASE_PATH}/admin/swimmer/${params.id}/register`} />
             </div>
             <div className="mb-4 justify-center">
                 <h2 className="text-2xl text-center font-extrabold">Teilen Sie diesen Link oder den QR-Code mit ihren Teammitglieder damit diese sich für das Team anmelden können</h2>
