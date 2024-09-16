@@ -27,9 +27,9 @@ export default function RegisterForm(props: RegisterFormProps) {
     const [addTeam, setAddTeam] = useState(false);
 
     return <form action={formAction}>
-        {state.mailAlreadyInUse ? <div>Mit der E-Mail wurde brereits eine Anmeldung vollzogen</div> : undefined}
-        {state.problemWithTeamName ? <div>Es besteht ein Problem mit dem Teamnamen. Dieser ist möglicherweise bereits vergeben</div> : undefined}
-        {state.hashMatchError ? <div>Sie sind nicht autorisiert sich dieses Team anzumelden.</div> : undefined}
+        {state.mailAlreadyInUse ? <div className="block bg-dlrg-yellow rounded p-1 my-2">Mit der E-Mail wurde brereits eine Anmeldung vollzogen</div> : undefined}
+        {state.problemWithTeamName ? <div className="block bg-dlrg-yellow rounded p-1 my-2">Es besteht ein Problem mit dem Teamnamen. Dieser ist möglicherweise bereits vergeben</div> : undefined}
+        {state.hashMatchError ? <div className="block bg-dlrg-yellow rounded p-1 my-2">Sie sind nicht autorisiert sich dieses Team anzumelden.</div> : undefined}
 
         {props.team ? <>
             <input type="hidden" name="teamId" value={props.team?.id} />
@@ -52,14 +52,17 @@ export default function RegisterForm(props: RegisterFormProps) {
             {addTeam ? <InputText name="teamName" title="Name des Teams (optional)" validate={state.checkInput} conditionMessage={TEXT_CONDITION_MESSAGE} condition={textCondition} /> : undefined}
         </div> : undefined}
         <div className="grid grid-cols-1 gap-4 mb-4">
-            <InputCheckbox name="breakfast" title="Möchten Sie Frühstück" />
+            <InputCheckbox name="breakfast" title="Möchten Sie Frühstück (6€ bei anmeldung zusätzlich zu bezahlen)" />
             <InputCheckbox name="distanceRating" title="Möchten Sie an der Distanzwertung teilnehmen" />
             <InputCheckbox name="publishName" title="Ich bin damit einverstanden, dass mein Name mit meinen Leistungen veröffentlicht wird" />
             <InputCheckbox name="newsletter" title="Ich möchte über zukünftige Veranstaltungen per Mail informiert werden" />
         </div>
+        <div className="grid grid-cols-1 gap-4 mb-4">
+            <b>Die Startgebürt beträgt 7€ und ist bei der Anmeldung zu bezahlen. Zusätzlich ist ein Pfand von 5€ für die Badekappe zu bezahlen. Bitte zahlen Sie nach möglichkeit für das Pfand mit einem 5€ Schein.</b>
+        </div>
         <div className="grid grid-cols-1 gap-4">
             <div>
-                <ButtonSubmit>Anmelden</ButtonSubmit>
+                <ButtonSubmit>Unverbindlich Anmelden</ButtonSubmit>
             </div>
         </div>
     </form>

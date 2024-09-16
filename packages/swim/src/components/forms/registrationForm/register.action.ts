@@ -14,6 +14,7 @@ import hashMatch from "@/lib/hashMatch";
 import Team, { TeamSchema } from "@/lib/model/Team.interface";
 import { ObjectId } from "mongodb";
 import Swimmer from "@/lib/model/Swimmer.interface";
+import teamAlreadyExists from "@/lib/mongo/operations/teamAlreadyExists";
 
 export default async function registerAction(_prevState: RegisterFormState, form: FormData): Promise<RegisterFormState> {
     let swimmerId = "---";
@@ -38,6 +39,15 @@ export default async function registerAction(_prevState: RegisterFormState, form
             return {
                 checkInput: true,
                 mailAlreadyInUse: true
+            }
+        }
+
+        if(form.get("teamName")) {
+            if(await teamAlreadyExists(form.get("teamName")?.toString() || "")) {
+                return {
+                    checkInput: true,
+                    problemWithTeamName: true
+                }
             }
         }
 
