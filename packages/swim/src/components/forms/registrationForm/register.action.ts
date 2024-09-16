@@ -35,12 +35,12 @@ export default async function registerAction(_prevState: RegisterFormState, form
             }
         }
 
-        if (await mailAlreadyExists(swimmer.email)) {
+        /*if (await mailAlreadyExists(swimmer.email)) {
             return {
                 checkInput: true,
                 mailAlreadyInUse: true
             }
-        }
+        }*/
 
         if(form.get("teamName")) {
             if(await teamAlreadyExists(form.get("teamName")?.toString() || "")) {
