@@ -70,7 +70,7 @@ export default async function registerAction(_prevState: RegisterFormState, form
         }
 
         try {
-            await mail(swimmer.email, textForRegMail(`${BASE_PATH}/anmelden/${swimmerId}/${hash(swimmerId)}`, `${swimmer.lastName}. ${swimmer.firstName}`));
+            await mail(swimmer.email, textForRegMail(`${BASE_PATH}/anmelden/${swimmerId}/${hash(swimmerId)}`, `${swimmer.lastName}, ${swimmer.firstName}`));
             console.log(`Mail send to ${swimmer.email}`)
         } catch (e) {
             console.error(`Error on sending mail to ${swimmer.email}`)
