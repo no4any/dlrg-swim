@@ -14,14 +14,14 @@ export const SwimmerSchema = z.object({
     city: z.string().optional(),
     distanceRating: z.boolean().optional(),
     birthday: z.string().date().nullable().optional(),
-    teamName: z.string().optional(),
+    teamId: z.string().optional(),
     breakfast: z.boolean().optional(),
     optIn: z.boolean().optional(),
     publishName: z.boolean().optional(),
     capColor: z.string().optional(),
     capNr: z.number().optional(),
     regNr: z.number().optional(),
-    informAboutUpcommingEvents: z.boolean().optional(), // TODO: Im Frontend einbauen!!!!
+    newsletter: z.boolean().optional(),
 })
 
 type Swimmer = z.infer<typeof SwimmerSchema>
