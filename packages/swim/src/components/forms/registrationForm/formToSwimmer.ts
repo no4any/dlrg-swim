@@ -11,7 +11,7 @@ export default async function formToSchwimmer(form: FormData): Promise<Swimmer> 
             teamId: form.get('teamId') || undefined,
             city: form.get('city')?.toString(),
             breakfast: form.get('breakfast') === "on",
-            distanceRating: form.get('distanceRating') === "on",
+            distanceRating: form.get('distanceRating') !== "on",
             publishName: form.get('publishName') === "on",
             newsletter: form.get('newsletter') === "on",
             status: "ANNOUNCED"

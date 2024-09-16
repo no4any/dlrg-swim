@@ -52,8 +52,8 @@ export default function RegisterForm(props: RegisterFormProps) {
             {addTeam ? <InputText name="teamName" title="Name des Teams (optional)" validate={state.checkInput} conditionMessage={TEXT_CONDITION_MESSAGE} condition={textCondition} /> : undefined}
         </div> : undefined}
         <div className="grid grid-cols-1 gap-4 mb-4">
-            <InputCheckbox name="breakfast" title="Möchten Sie Frühstück (6€ bei anmeldung zusätzlich zu bezahlen)" />
-            <InputCheckbox name="distanceRating" title="Möchten Sie an der Distanzwertung teilnehmen" />
+            <InputCheckbox name="breakfast" title="Ich möchte Frühstück (6€ bei Anmeldung zusätzlich zu bezahlen)" />
+            <InputCheckbox name="distanceRating" title="Ich möchte NICHT an der Distanzwertung  teilnehmen" />
             <InputCheckbox name="publishName" title="Ich bin damit einverstanden, dass mein Name mit meinen Leistungen veröffentlicht wird" />
             <InputCheckbox name="newsletter" title="Ich möchte über zukünftige Veranstaltungen per Mail informiert werden" />
         </div>
