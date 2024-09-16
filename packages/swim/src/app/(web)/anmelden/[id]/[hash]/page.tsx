@@ -5,7 +5,13 @@ import getSwimmer from "@/lib/mongo/operations/getSwimmer"
 import getTeam from "@/lib/mongo/operations/getTeam";
 import getTeamMembers from "@/lib/mongo/operations/getTeamMembers";
 import { BASE_PATH } from "@/lib/params";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export const metadata: Metadata = {
+    title: "DLRG Gießen: Ihre Daten",
+    description: "Verwaltungsseite für das 24 Stunden schwimmen der DLRG Gießen",
+  };
 
 export default async function RegisteredPage({ params }: { params: { id: string, hash: string } }) {
     if (hash(params.id) !== params.hash) {
