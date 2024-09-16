@@ -1,6 +1,6 @@
 export default function textForRegMail(link:string): string {
-    return `<h1>Ihre Anmeldung</h1>
-    <p>Mit dieser Mail erhalten sie den Link zu ihren anmeldedaten. Sollte Änderungen nötig sein, können sie diese bei der Registrierung am Veranstaltungstag vornahmen lassen.<p>
-    <p>Teamleiter können über ihren Link auch den Stand ihrer Mannschaften einsehen.</p>
-    <p><a href="${link}">Link zu Ihren anmeldedaten</a></p>`
+    return `<h1>Deine Anmeldung zum 10. Gießener 24-Stunden-Schwimmen</h1>
+    <p>Mit dieser Mail erhältst du den Link zu deinen Anmeldedaten. Sollte Änderungen nötig sein, kannst du diese beim Check-In am Veranstaltungstag vornehmen lassen.</p>
+    <p>Teamleiter können über ihren Link auch die Strecken ihrer Mannschaften einsehen.</p>
+    <p><a href="${link}">Link zu deinen Anmeldedaten</a></p>`
 }
