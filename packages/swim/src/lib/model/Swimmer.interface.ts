@@ -11,6 +11,7 @@ export const SwimmerSchema = z.object({
     email: z.string().email(),
     firstName: z.string().min(2),
     lastName: z.string().min(2),
+    gender: z.enum(["0", "M", "W"]).optional(),
     city: z.string().optional(),
     distanceRating: z.boolean().optional(),
     birthday: z.string().date().nullable().optional(),

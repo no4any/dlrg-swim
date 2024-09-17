@@ -96,6 +96,10 @@ export default async function RegisteredPage({ params }: { params: { id: string,
                         <td>{swimmer.city || <i className="text-gray-700">Keine Angabe</i>}</td>
                     </tr>
                     <tr>
+                        <th className="text-right">Geschlecht</th>
+                        <td>{swimmer.gender === "0" ? <i className="text-gray-700">Keine Angabe</i> : swimmer.gender === "M"?"Männlich":"Weiblich"}</td>
+                    </tr>
+                    <tr>
                         <th className="text-right">Teamname</th>
                         <td>{swimmer.teamId ? `${team?.name} ${isTeamLeader ? "(Teamleiter)" : ""}` : <i className="text-gray-700">Keine Angabe</i>}</td>
                     </tr>

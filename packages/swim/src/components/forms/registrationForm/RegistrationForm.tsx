@@ -41,8 +41,18 @@ export default function RegisterForm(props: RegisterFormProps) {
             <InputText name="email" title="E-Mail" validate={state.checkInput} conditionMessage={MAIL_CONDITION_MESSAGE} condition={mailCondition} />
             <InputDate name="birthday" title="Geburtstag (optional)" />
         </div>
-        <div className="grid grid-cols-1 gap-4 mb-4">
+        <div className="grid lg:grid-cols-2 gap-4 mb-4">
             <InputText name="city" title="Stadt (optional)" validate={state.checkInput} />
+            <div>
+                <label className="block text-sm font-medium">
+                    Geschlecht
+                    <select name="gender" className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-200 text-sm focus:ring-dlrg-blue focus:border-dlrg-blue">
+                        <option value="0">Keine Angabe</option>
+                        <option value="W">Weiblich</option>
+                        <option value="M">Männlich</option>
+                    </select>
+                </label>
+            </div>
         </div>
         {!props.team ? <div className="grid grid-cols-1 gap-4 mb-4">
             <div>
@@ -58,7 +68,12 @@ export default function RegisterForm(props: RegisterFormProps) {
             <InputCheckbox name="newsletter" title="Ich möchte über zukünftige Veranstaltungen per Mail informiert werden" />
         </div>
         <div className="grid grid-cols-1 gap-4 mb-4">
-            <b>Die Startgebürt beträgt 7€ und ist bei der Anmeldung zu bezahlen. Zusätzlich ist ein Pfand von 5€ für die Badekappe zu bezahlen. Bitte zahlen Sie nach möglichkeit für das Pfand mit einem 5€ Schein.</b>
+            <p>
+                <b>Die Startgebürt beträgt 7€ und ist bei der Anmeldung zu bezahlen. Zusätzlich ist ein Pfand von 5€ für die Badekappe zu bezahlen. Bitte zahlen Sie nach möglichkeit für das Pfand mit einem 5€ Schein.</b>
+            </p>
+            <p>
+                <i>Für die Teilnahme an der Auswertung für Pokale, kann die Angabe des Geburtstages, der Stadt und des Geschlechtes erforderlich sein. Sollten entsprechende Felder nicht angegeben werden, schließt das ggf. die Teilnahme für bestimmt Pokalwertungen aus.</i>
+            </p>
         </div>
         <div className="grid grid-cols-1 gap-4">
             <div>

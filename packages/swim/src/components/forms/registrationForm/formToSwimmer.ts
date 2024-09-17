@@ -6,6 +6,7 @@ export default async function formToSchwimmer(form: FormData): Promise<Swimmer> 
         return SwimmerSchema.parse({
             lastName: form.get('name')?.toString() || "",
             firstName: form.get('prename')?.toString() || "",
+            gender: form.get('gender')?.toString() || "0",
             email: (form.get('email')?.toString() || "").toLowerCase(),
             birthday: form.get('birthday')?.toString() || undefined,
             teamId: form.get('teamId') || undefined,
