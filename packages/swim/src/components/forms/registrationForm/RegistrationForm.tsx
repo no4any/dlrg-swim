@@ -69,10 +69,10 @@ export default function RegisterForm(props: RegisterFormProps) {
         </div>
         <div className="grid grid-cols-1 gap-4 mb-4">
             <p>
-                <b>Die Startgebür beträgt 7€ und ist bei der Anmeldung zu bezahlen. Zusätzlich ist ein Pfand von 5€ für die Badekappe zu bezahlen. Bitte zahlen Sie nach Möglichkeit das Pfand mit einem 5€ Schein.</b>
+                <b>Die Startgebühr beträgt 7€ und ist bei der Anmeldung zu bezahlen. Zusätzlich ist ein Pfand von 5€ für die Badekappe zu bezahlen. Bitte zahlen Sie nach Möglichkeit das Pfand mit einem 5€ Schein.</b>
             </p>
             <p>
-                <i>Für die Teilnahme an der Auswertung für Pokale, kann die Angabe des Geburtstages, der Stadt und des Geschlechtes erforderlich sein. Sollten entsprechende Felder nicht angegeben werden, schließt das ggf. die Teilnahme an bestimmt Pokalwertungen aus.</i>
+                <i>Für die Teilnahme an der Auswertung für Pokale, kann die Angabe des Geburtstages, der Stadt und des Geschlechtes erforderlich sein. Sollten entsprechende Felder nicht angegeben werden, schließt das ggf. die Teilnahme an bestimmten Pokalwertungen aus.</i>
             </p>
         </div>
         <div className="grid grid-cols-1 gap-4">
