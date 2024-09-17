@@ -10,7 +10,6 @@ import RegisterFormState from "./RegisterFormState.interface"
 import registerAction from "./register.action"
 import textCondition from "./conditions/textCondition"
 import mailCondition from "./conditions/mailCondition"
-import cityCondition from "./conditions/cityCondition"
 
 const TEXT_CONDITION_MESSAGE = "Muss mindestens 2 Zeichen lang sein"
 const MAIL_CONDITION_MESSAGE = "Scheint keine ordentliche E-Mail-Adresse zu sein";
