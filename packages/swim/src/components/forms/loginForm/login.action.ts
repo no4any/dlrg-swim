@@ -1,5 +1,7 @@
 "use server"
 
+import "server-only"
+
 import { redirect } from "next/navigation";
 import checkCredentials from "./checkCredentials"
 import LoginFormState from "./LoginFormState.interface"
