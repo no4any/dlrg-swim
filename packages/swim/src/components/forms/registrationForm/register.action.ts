@@ -1,5 +1,7 @@
 "use server"
 
+import "server-only";
+
 import getMongoClient from "@/lib/mongo/getMongoClient";
 import RegisterFormState from "./RegisterFormState.interface"
 import { revalidatePath } from "next/cache";
