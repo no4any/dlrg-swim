@@ -10,6 +10,10 @@ export default async function RegisterSwimmerPage({ params }: { params: { id: st
         notFound();
     }
 
+    if(swimmer.status !== "ANNOUNCED") {
+        return <H1>{swimmer.lastName}, {swimmer.firstName} ist bereits angemeldet</H1>
+    }
+
     return <div>
         <H1>Anmeldung eines neuen Schwimmers</H1>
         <RegisterForm swimmer={swimmer} />

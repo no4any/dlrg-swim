@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import getSwimmersAction from "./getSwimmers.action";
 import deleteSwimmerAction from "./deleteSwimmer.action";
+import { redirect } from "next/navigation";
 
 export default function SwimmersTable({ swimmers }: { swimmers: Swimmer[] }) {
     const [localSwimmers, setLocalSwimmers] = useState<Swimmer[]>(swimmers);
@@ -31,6 +32,9 @@ function SwimmerRow({ swimmer, onDelete }: { swimmer: Swimmer, onDelete: (id: st
         <div className="p-1">{swimmer.capColor}</div>
         <div className="p-1">{swimmer.capNr}</div>
         <div className="p-1 text-right">
+            {swimmer.status=== "ANNOUNCED"?<Link className="pr-1" href={`/admin/swimmer/${swimmer._id?.toString()}/register`}>
+                Anmelden
+            </Link>:<></>}
             <button onClick={()=>{
                 if(confirm(`${swimmer.lastName}, ${swimmer.firstName} (${swimmer.email}) wirklich löschen?`)) {
                     onDelete(swimmer._id?.toString() || "")

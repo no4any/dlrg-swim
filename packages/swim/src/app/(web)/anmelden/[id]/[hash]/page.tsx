@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 export const metadata: Metadata = {
     title: "DLRG Gießen: Ihre Daten",
     description: "Verwaltungsseite für das 24 Stunden schwimmen der DLRG Gießen",
-  };
+};
 
 export default async function RegisteredPage({ params }: { params: { id: string, hash: string } }) {
     if (hash(params.id) !== params.hash) {
@@ -53,21 +53,25 @@ export default async function RegisteredPage({ params }: { params: { id: string,
             </h1>
         </header>
         <main>
-            <div className="mb-4 justify-center">
-                <h2 className="text-2xl text-center font-extrabold">Bei der Anmeldung vorzeigen (ausgedruckt oder auf Smartphone)</h2>
-            </div>
-            <div className="mb-4 flex justify-center">
-                <QrCode msg={`${BASE_PATH}/admin/swimmer/${params.id}/register`} />
-            </div>
-            <div className="mb-4 justify-center">
-                <h2 className="text-2xl text-center font-extrabold">Teilen Sie diesen Link oder den QR-Code mit ihren Teammitglieder damit diese sich für das Team anmelden können</h2>
-            </div>
-            {teamLink ? <div className="mb-4 flex justify-center">
-                <div>
-                    <QrCode msg={teamLink} />
-                    <div className="text-center"><a href={teamLink}>Link um weitere Teammitglieder anzumelden</a></div>
+            {swimmer.status === "ANNOUNCED" ? <>
+                <div className="mb-4 justify-center">
+                    <h2 className="text-2xl text-center font-extrabold">Bei der Anmeldung vorzeigen (ausgedruckt oder auf Smartphone)</h2>
                 </div>
-            </div> : undefined}
+                <div className="mb-4 flex justify-center">
+                    <QrCode msg={`${BASE_PATH}/admin/swimmer/${params.id}/register`} />
+                </div></> : <></>}
+
+            {teamLink ? <>
+                <div className="mb-4 justify-center">
+                    <h2 className="text-2xl text-center font-extrabold">Teilen Sie diesen Link oder den QR-Code mit ihren Teammitglieder damit diese sich für das Team anmelden können</h2>
+                </div>
+
+                <div className="mb-4 flex justify-center">
+                    <div>
+                        <QrCode msg={teamLink} />
+                        <div className="text-center"><a href={teamLink}>Link um weitere Teammitglieder anzumelden</a></div>
+                    </div>
+                </div></> : undefined}
             {isTeamLeader ? <div className="mb-4 justify-center">
                 <div><h2 className="text-2xl text-center font-extrabold">Teammitglieder</h2></div>
                 {teamMembers.map((swimmer) => <div key={swimmer._id?.toString() || ""} className="text-center">{swimmer.lastName}, {swimmer.firstName}</div>)}
@@ -97,7 +101,7 @@ export default async function RegisteredPage({ params }: { params: { id: string,
                     </tr>
                     <tr>
                         <th className="text-right">Geschlecht</th>
-                        <td>{swimmer.gender === "0" ? <i className="text-gray-700">Keine Angabe</i> : swimmer.gender === "M"?"Männlich":"Weiblich"}</td>
+                        <td>{swimmer.gender === "0" ? <i className="text-gray-700">Keine Angabe</i> : swimmer.gender === "M" ? "Männlich" : "Weiblich"}</td>
                     </tr>
                     <tr>
                         <th className="text-right">Teamname</th>
