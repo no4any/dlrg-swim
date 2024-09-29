@@ -1,28 +1,23 @@
-import isAdmin from "@/lib/mongo/operations/users/isAdmin";
-import isAuth from "@/lib/mongo/operations/users/isAuth";
-import listUsers from "@/lib/mongo/operations/users/listUsers";
-import { cookies } from "next/headers"
+import { H1 } from "@/components/basic/h";
+import User from "@/lib/model/User.interface";
+import UserList from "./UserList";
+import getUsers from "./getUsers.action";
+import getSession from "@/lib/auth/getSession";
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic'
 
 export default async function UsersPage() {
-    const token = cookies().get('session')?.value || "";
-    const userName = await isAuth(token);
+    const {isAdmin} = await getSession();
 
-    if (userName === null) {
-        return <div>Fehler in der Anmeldung</div>;
+    if(!isAdmin) {
+        return <div>Sie sind nicht berechtig</div>
     }
 
-    if (!await isAdmin(userName)) {
-        return <div>Fehlende Berechtigungen</div>
-    }
-
-    const users = await listUsers();
+    const users: User[] = await getUsers();
 
     return <div>
-        <div>
-            {users.map((user) => <div>{user.mail}</div>)}
-        </div>
+        <H1>Benutzerverwaltung</H1>
+        <UserList users={users} />
     </div>
 }

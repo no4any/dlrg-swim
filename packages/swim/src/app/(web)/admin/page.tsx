@@ -1,12 +1,10 @@
-import isAuth from "@/lib/mongo/operations/users/isAuth";
-import { cookies } from "next/headers"
+import getSession from "@/lib/auth/getSession";
 
 export default async function AdminPage() {
-    const session = cookies().get('session')?.value;
-    const userName = await isAuth(session || "");
+    const { mail, isAdmin } = await getSession();
 
-    if(userName) {
-        return <div>Admin ({userName})</div>
+    if (mail) {
+        return <div>Admin ({mail})</div>
     } else {
         return <div>ERROR</div>
     }

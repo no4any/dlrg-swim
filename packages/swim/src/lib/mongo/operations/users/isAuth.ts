@@ -1,7 +1,11 @@
 import checkSignature from "@/lib/auth/checkSignature";
 import userExists from "./userExists";
 
-export default async function isAuth(token: string): Promise<string | null> {
+export default async function isAuth(token?: string): Promise<string | null> {
+    if (token === undefined) {
+        return null;
+    }
+
     const user = await checkSignature(token);
 
     if (user !== null) {

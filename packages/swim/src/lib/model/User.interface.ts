@@ -4,7 +4,7 @@ import { z } from "zod";
 export const UserSchema = z.object({
     _id: z.union([z.instanceof(ObjectId), z.string()]).optional(),
     mail: z.string().min(2),
-    password: z.string().min(2),
+    password: z.string().min(2).optional().nullable(),
     isAdmin: z.boolean().optional().nullable()
 })
 
