@@ -1,5 +1,5 @@
 import { H1 } from "@/components/basic/h";
-import TeamsTable from "./teamsTable";
+import TeamsTable from "./TeamsTable";
 import getTeamsAction from "./getTeams.action";
 
 export const revalidate = 0;

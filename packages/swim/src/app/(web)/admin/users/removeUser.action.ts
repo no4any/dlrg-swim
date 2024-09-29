@@ -2,26 +2,23 @@
 
 import "server-only"
 
-import isAdmin from "@/lib/mongo/operations/users/isAdmin"
-import { cookies } from "next/headers";
-import isAuth from "@/lib/mongo/operations/users/isAuth";
 import deleteUser from "@/lib/mongo/operations/users/deleteUser";
+import getSession from "@/lib/auth/getSession";
 
-export default async function removeUser(user:string):Promise<boolean> {
-    const token = cookies().get('session')?.value || "";
-    const userName = await isAuth(token);
+export default async function removeUser(user: string): Promise<boolean> {
+    const { mail, isAdmin } = await getSession();
 
-    if (userName === null) {
+    if (mail === null) {
         return false;
     }
 
-    if(userName === user) {
+    if (mail === user) {
         return false;
     }
 
-    if (!await isAdmin(userName)) {
+    if (!isAdmin) {
         return false;
     }
-    
+
     return await deleteUser(user);
 }
