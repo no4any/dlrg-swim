@@ -7,6 +7,7 @@ import RegistrationData, { RegistrationDataSchema } from "./RegistrationData.int
 import { redirect } from "next/navigation";
 import getSwimmersCollection from "@/lib/mongo/getSwimmersCollection";
 import { ObjectId } from "mongodb";
+import getSession from "@/lib/auth/getSession";
 
 function formToRegistrationData(form: FormData): RegistrationData {
     return RegistrationDataSchema.parse({
@@ -21,6 +22,12 @@ function formToRegistrationData(form: FormData): RegistrationData {
 }
 
 export default async function registerAction(_prevState: RegisterActionState, form: FormData): Promise<RegisterActionState> {
+    const { mail } = await getSession();
+
+    if(mail === null) {
+        redirect('/login');
+    }
+
     const id = form.get('id')?.toString() || "";
 
     if (id.length === 0) {
