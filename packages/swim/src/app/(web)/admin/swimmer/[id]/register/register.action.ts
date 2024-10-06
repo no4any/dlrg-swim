@@ -35,7 +35,6 @@ export default async function registerAction(_prevState: RegisterActionState, fo
     }
 
     try {
-        console.log("Transforming data")
         const data = formToRegistrationData(form);
         console.log(data)
         const swimmerCollection = await getSwimmersCollection();
