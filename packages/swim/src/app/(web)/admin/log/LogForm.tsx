@@ -9,7 +9,8 @@ import LogEntryForm from "./LogEntryForm";
 import { H2, H3 } from "@/components/basic/h";
 
 export default function LogForm() {
-    const [mode, setMode] = useState<"reg" | "cap" | undefined>(undefined)
+    const [night, setNight] = useState<string>("D");
+    const [mode, setMode] = useState<"reg" | "cap" | undefined>(undefined);
     const [swimmer, setSwimmer] = useState<Swimmer | null | undefined>(undefined);
     const [logNr, setLogNr] = useState<number | undefined>(undefined);
     const [laps, setLaps] = useState<number | undefined>(0);
@@ -43,6 +44,12 @@ export default function LogForm() {
     return <div>
         {!swimmer ? <div>
             <div className="pb-4">
+                <select name="capColor" value={night} onChange={evnt => setNight(evnt.target.value)} className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-200 text-sm focus:ring-dlrg-blue focus:border-dlrg-blue">
+                    <option value={"D"}>Regulär</option>
+                    <option value={"N"}>Nachtpokal</option>
+                </select>
+            </div>
+            <div className="pb-4">
                 <Button active={mode === "reg"} onClick={() => setMode("reg")}>Nach Registiernummer</Button>
             </div>
             <div className="pb-4">
@@ -54,7 +61,7 @@ export default function LogForm() {
             {mode === "cap" ? <CapForm onSwimmer={setSwimmer} /> : <></>}
         </> : <></>}
         {swimmer !== undefined ? <div>
-            {swimmer !== null ? <LogEntryForm onLog={log} swimmer={swimmer} /> : "Schwimmer nicht gefunden"}
+            {swimmer !== null ? <LogEntryForm onLog={log} swimmer={swimmer} night={night === "N"} /> : "Schwimmer nicht gefunden"}
         </div> : <></>}
     </div>
 }

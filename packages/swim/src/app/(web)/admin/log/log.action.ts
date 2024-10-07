@@ -1,15 +1,28 @@
 "use server"
 
 import getSession from "@/lib/auth/getSession";
+import getDistancesCollection from "@/lib/mongo/getDistancesCollection";
+import generateId from "@/lib/mongo/operations/counter/generateId";
 
-export default async function logAction(id: string, laps: number): Promise<number> {
+export default async function logAction(id: string, laps: number, night: boolean): Promise<number> {
     const { mail } = await getSession();
 
     if (!mail) {
         return 0;
     }
 
-    // TODO: implementieren
+    const regId = await generateId("distanceEntry");
 
-    return new Date().getTime();
+    const collection = await getDistancesCollection();
+    
+    await collection.insertOne({
+        createdAt: new Date().getTime(),
+        laps,
+        nr: regId,
+        registerer: mail,
+        swimmerId: id,
+        nightCup: night,
+    })
+
+    return regId;
 }
