@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useState } from "react";
 import getSwimmersAction from "./getSwimmers.action";
 import deleteSwimmerAction from "./deleteSwimmer.action";
-import { redirect } from "next/navigation";
 
 export default function SwimmersTable({ swimmers }: { swimmers: Swimmer[] }) {
     const [localSwimmers, setLocalSwimmers] = useState<Swimmer[]>(swimmers);
@@ -20,26 +19,18 @@ export default function SwimmersTable({ swimmers }: { swimmers: Swimmer[] }) {
     }
 
     return <div>
-        {localSwimmers.map((swimmer) => <SwimmerRow key={swimmer._id?.toString() || ""} swimmer={swimmer} onDelete={onDelete} />)}
+        {localSwimmers.map((swimmer) => <SwimmerRow key={swimmer._id?.toString() || ""} swimmer={swimmer} />)}
     </div>
 }
 
-function SwimmerRow({ swimmer, onDelete }: { swimmer: Swimmer, onDelete: (id: string) => void }) {
-    return <div className="grid grid-cols-8">
-        <div className="p-1"><Link href={`/admin/swimmer/${swimmer._id?.toString()}` || ""}>{swimmer.lastName}, {swimmer.firstName}</Link></div>
-        <div className="p-1 col-span-3">{swimmer.email}</div>
-        <div className="p-1">{swimmer.status}</div>
-        <div className="p-1">{swimmer.capColor}</div>
-        <div className="p-1">{swimmer.capNr}</div>
-        <div className="p-1 text-right">
-            {swimmer.status=== "ANNOUNCED"?<Link className="pr-1" href={`/admin/swimmer/${swimmer._id?.toString()}/register`}>
-                Anmelden
-            </Link>:<></>}
-            <button onClick={()=>{
-                if(confirm(`${swimmer.lastName}, ${swimmer.firstName} (${swimmer.email}) wirklich löschen?`)) {
-                    onDelete(swimmer._id?.toString() || "")
-                }
-            }}>Löschen</button>
+function SwimmerRow({ swimmer }: { swimmer: Swimmer }) {
+    return <Link href={`/admin/swimmer/${swimmer._id?.toString() || "undefined"}`}>
+        <div className="grid grid-cols-7 hover:bg-dlrg-red-100 rounded-lg">
+            <div className="p-1"><Link href={`/admin/swimmer/${swimmer._id?.toString()}` || ""}>{swimmer.lastName}, {swimmer.firstName}</Link></div>
+            <div className="p-1 col-span-3">{swimmer.email}</div>
+            <div className="p-1">{swimmer.status}</div>
+            <div className="p-1">{swimmer.capColor ? <>{swimmer.capColor} - {swimmer.capNr}</> : <></>}</div>
+            <div className="p-1">{swimmer.regNr}</div>
         </div>
-    </div>
+    </Link>
 }
