@@ -1,6 +1,6 @@
 import { H1 } from "@/components/basic/h";
-import TeamsTable from "./TeamsTable";
 import getTeamsAction from "./getTeams.action";
+import TeamsTable from "./TeamsTable";
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic'
