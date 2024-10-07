@@ -14,6 +14,8 @@ export default function RegisterForm({ swimmer }: { swimmer: Swimmer }) {
 
     return <div>
         {state.error ? <div className="block bg-dlrg-yellow rounded p-2 my-2"><b>Fehler: </b>Eingabe bitte prüfen</div> : <></>}
+        {state.capInUse ? <div className="block bg-dlrg-yellow rounded p-2 my-2"><b>Fehler: </b>Badekappe bereits vergeben</div> : <></>}
+        {state.regNrInUse ? <div className="block bg-dlrg-yellow rounded p-2 my-2"><b>Fehler: </b>Bändchennummer bereits vergeben</div> : <></>}
         <H2>Name</H2>
         <div>{swimmer.lastName}, {swimmer.firstName}</div>
         <H2>E-Mail</H2>

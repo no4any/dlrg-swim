@@ -8,6 +8,8 @@ import { redirect } from "next/navigation";
 import getSwimmersCollection from "@/lib/mongo/getSwimmersCollection";
 import { ObjectId } from "mongodb";
 import getSession from "@/lib/auth/getSession";
+import findByCap from "../../../log/findByCap.action";
+import findByReg from "../../../log/findByReg.action";
 
 function formToRegistrationData(form: FormData): RegistrationData {
     return RegistrationDataSchema.parse({
@@ -36,6 +38,19 @@ export default async function registerAction(_prevState: RegisterActionState, fo
 
     try {
         const data = formToRegistrationData(form);
+
+        if(await findByCap(data.capColor, data.capNr)) {
+            return {
+                capInUse: true
+            }
+        }
+
+        if(await findByReg(data.regNr)) {
+            return {
+                regNrInUse: true
+            }
+        }
+
         console.log(data)
         const swimmerCollection = await getSwimmersCollection();
         await swimmerCollection.updateOne({ _id: new ObjectId(id) }, {

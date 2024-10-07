@@ -1,5 +1,7 @@
 "use client"
 
+import ButtonLink from "@/components/basic/buttonLink";
+import { H2 } from "@/components/basic/h";
 import DistanceEntry from "@/lib/model/DistanceEntry.interface"
 import Swimmer from "@/lib/model/Swimmer.interface"
 import Link from "next/link";
@@ -16,9 +18,15 @@ function birthdayToReadable(date: string): string {
 }
 
 export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimmer & { teamName?: string }, distances: DistanceEntry[] }) {
+    const distanceAll = distances
+        .reduce((acc, distance) => distance.laps + acc, 0);
+    const distanceNight = distances
+        .filter(distance => distance.nightCup === true)
+        .reduce((acc, distance) => distance.laps + acc, 0);
+
     return <div>
-        <div>
-            {swimmer.status === "ANNOUNCED" ? <Link href={`/admin/swimmer/${swimmer._id?.toString()}/register`}>Registrieren</Link> : <></>}
+        <div className="pb-4">
+            {swimmer.status === "ANNOUNCED" ? <ButtonLink href={`/admin/swimmer/${swimmer._id?.toString()}/register`}>Registrieren</ButtonLink> : <></>}
         </div>
         <dl>
             <dt>Name</dt>
@@ -58,5 +66,18 @@ export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimm
                 <dd>{swimmer.teamName}</dd>
             </> : <></>}
         </dl>
+        <div>
+            <H2>Gesamtestrecke geschwommen: {distanceAll}</H2>
+            <H2>Im Nachpokal geschwommen: {distanceNight}</H2>
+            <div>
+                {distances.map(distance => <Link key={distance._id?.toString() || "key"} href={`/admin/laps/${distance._id?.toString() || "undefined"}`}>
+                    <div className="grid grid-cols-3">
+                        <div>{distance.nr}</div>
+                        <div>{distance.laps}</div>
+                        <div>{distance.nightCup?"Nachpokal":""}</div>
+                    </div>
+                </Link>)}
+            </div>
+        </div>
     </div>
 }
