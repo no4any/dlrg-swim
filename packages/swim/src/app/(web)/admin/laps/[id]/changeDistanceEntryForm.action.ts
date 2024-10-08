@@ -29,7 +29,9 @@ export default async function changeDistanceEntryFormAction(_prevState: ChangeDi
             _id: new ObjectId(id)
         }, {
             $set: {
-                laps: newLaps
+                laps: newLaps,
+                registerer: mail,
+                createdAt: new Date().getTime(),
             }
         });
 
