@@ -12,16 +12,14 @@ export default function TeamsTable({ teams }: { teams: Team[] }) {
     const [localTeams, setLocalTeams] = useState<Team[]>(teams);
     const [searchString, setSearchString] = useState<string>("");
 
-    function searchStringFilter(team: Team): boolean {
-        const query = searchString.toLowerCase();
-        return team.lowerName.toLowerCase().includes(query);
-    }
-
     useEffect(() => {
         setLocalTeams(teams
-            .filter(searchStringFilter)
+            .filter(team => {
+                const query = searchString.toLowerCase();
+                return team.lowerName.toLowerCase().includes(query);
+            })
         )
-    }, [searchString])
+    }, [searchString, teams])
 
     return <div>
         <div className="col-span-4 px-2 pb-4">

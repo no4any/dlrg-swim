@@ -9,29 +9,25 @@ export default function SwimmersTable({ swimmers }: { swimmers: Swimmer[] }) {
     const [searchString, setSearchString] = useState<string>("");
     const [searchStatus, setSearchStatus] = useState<"ANNOUNCED" | "REGISTERED" | "FINISHED" | "NONE">("NONE");
 
-    function searchStringFilter(swimmer: Swimmer): boolean {
-        const query = searchString.toLowerCase();
-        return swimmer.firstName.toLowerCase().includes(query) ||
-            swimmer.lastName.toLocaleLowerCase().includes(query) ||
-            swimmer.email.toLocaleLowerCase().includes(query) ||
-            `${swimmer.regNr}`.includes(query) ||
-            `${swimmer.capNr}`.includes(query) ||
-            !!swimmer.capColor?.includes(query)
-    }
-
-    function searchStatusFilter(swimmer: Swimmer): boolean {
-        if (searchStatus === "NONE") {
-            return true;
-        }
-        return swimmer.status === searchStatus;
-    }
-
     useEffect(() => {
         setLocalSwimmers(swimmers
-            .filter(searchStatusFilter)
-            .filter(searchStringFilter)
+            .filter(swimmer => {
+                if (searchStatus === "NONE") {
+                    return true;
+                }
+                return swimmer.status === searchStatus;
+            })
+            .filter(swimmer => {
+                const query = searchString.toLowerCase();
+                return swimmer.firstName.toLowerCase().includes(query) ||
+                    swimmer.lastName.toLocaleLowerCase().includes(query) ||
+                    swimmer.email.toLocaleLowerCase().includes(query) ||
+                    `${swimmer.regNr}`.includes(query) ||
+                    `${swimmer.capNr}`.includes(query) ||
+                    !!swimmer.capColor?.includes(query)
+            })
         )
-    }, [searchString, searchStatus])
+    }, [searchString, searchStatus, swimmers])
 
     return <div>
         <div className="grid grid-cols-7">
