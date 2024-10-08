@@ -26,9 +26,14 @@ export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimm
 
     return <div>
         <div className="pb-4">
-            {swimmer.status === "ANNOUNCED" ? <ButtonLink href={`/admin/swimmer/${swimmer._id?.toString()}/register`}>Registrieren</ButtonLink> : <></>}
-            <span className="pl-4">
+            {swimmer.status === "ANNOUNCED" ? <span className="pr-4">
+                <ButtonLink href={`/admin/swimmer/${swimmer._id?.toString()}/register`}>Registrieren</ButtonLink>
+            </span> : <></>}
+            <span className="pr-4">
                 <ButtonLink href={`/admin/swimmer/${swimmer._id?.toString() || "undefined"}/changeTeam`}>Team ändern</ButtonLink>
+            </span>
+            <span className="pr-4">
+                <ButtonLink href={`/admin/swimmer/${swimmer._id?.toString() || "undefined"}/changeData`}>Daten ändern</ButtonLink>
             </span>
         </div>
         <dl>
