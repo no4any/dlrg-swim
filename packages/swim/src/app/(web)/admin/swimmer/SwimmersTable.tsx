@@ -2,23 +2,68 @@
 
 import Swimmer from "@/lib/model/Swimmer.interface";
 import Link from "next/link";
-import { useState } from "react";
-import getSwimmersAction from "./getSwimmers.action";
-import deleteSwimmerAction from "./deleteSwimmer.action";
+import { useEffect, useState } from "react";
 
 export default function SwimmersTable({ swimmers }: { swimmers: Swimmer[] }) {
     const [localSwimmers, setLocalSwimmers] = useState<Swimmer[]>(swimmers);
+    const [searchString, setSearchString] = useState<string>("");
+    const [searchStatus, setSearchStatus] = useState<"ANNOUNCED" | "REGISTERED" | "FINISHED" | "NONE">("NONE");
 
-    async function reload() {
-        setLocalSwimmers(await getSwimmersAction());
+    function searchStringFilter(swimmer: Swimmer): boolean {
+        const query = searchString.toLowerCase();
+        return swimmer.firstName.toLowerCase().includes(query) ||
+            swimmer.lastName.toLocaleLowerCase().includes(query) ||
+            swimmer.email.toLocaleLowerCase().includes(query) ||
+            `${swimmer.regNr}`.includes(query) ||
+            `${swimmer.capNr}`.includes(query) ||
+            !!swimmer.capColor?.includes(query)
     }
 
-    async function onDelete(id: string) {
-        await deleteSwimmerAction(id);
-        await reload();
+    function searchStatusFilter(swimmer: Swimmer): boolean {
+        if (searchStatus === "NONE") {
+            return true;
+        }
+        return swimmer.status === searchStatus;
     }
+
+    useEffect(() => {
+        setLocalSwimmers(swimmers
+            .filter(searchStatusFilter)
+            .filter(searchStringFilter)
+        )
+    }, [searchString, searchStatus])
 
     return <div>
+        <div className="grid grid-cols-7">
+            <div className="col-span-4 px-2">
+                <input
+                    type="text"
+                    placeholder="Freie Suche"
+                    className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-200 text-sm focus:ring-dlrg-blue focus:border-dlrg-blue"
+                    value={searchString}
+                    onChange={evnt => setSearchString(evnt.target.value)}
+                />
+            </div>
+            <div className="col-span-3">
+                <select
+                    value={searchStatus}
+                    onChange={evnt => setSearchStatus(evnt.target.value as "ANNOUNCED" | "REGISTERED" | "FINISHED" | "NONE")}
+                    className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-200 text-sm focus:ring-dlrg-blue focus:border-dlrg-blue"
+                >
+                    <option value="NONE">---</option>
+                    <option value="ANNOUNCED">ANNOUNCED</option>
+                    <option value="REGISTERED">REGISTERED</option>
+                    <option value="FINISHED">FINISHED</option>
+                </select>
+            </div>
+        </div>
+        <div className="grid grid-cols-7 hover:bg-dlrg-red-100 rounded-lg">
+            <div className="p-1"><b>Name</b></div>
+            <div className="p-1 col-span-3"><b>E-Mail</b></div>
+            <div className="p-1"><b>Status</b></div>
+            <div className="p-1"><b>Badekappe</b></div>
+            <div className="p-1"><b>Bändchen</b></div>
+        </div>
         {localSwimmers.map((swimmer) => <SwimmerRow key={swimmer._id?.toString() || ""} swimmer={swimmer} />)}
     </div>
 }
