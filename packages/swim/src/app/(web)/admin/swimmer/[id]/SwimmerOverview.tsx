@@ -5,6 +5,7 @@ import { H2 } from "@/components/basic/h";
 import DistanceEntry from "@/lib/model/DistanceEntry.interface"
 import Swimmer from "@/lib/model/Swimmer.interface"
 import Link from "next/link";
+import deleteSwimmerAction from "./deleteSimmer.action";
 
 function getAge(dob: Date): number {
     const diff_ms = Date.now() - dob.getTime();
@@ -37,6 +38,15 @@ export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimm
             </span>
             {swimmer.status === "REGISTERED" ? <span className="pr-4">
                 <ButtonLink href={`/admin/swimmer/${swimmer._id?.toString()}/changeRegData`}>Registrierung ändern</ButtonLink>
+            </span> : <></>}
+            {swimmer.status === "ANNOUNCED" ? <span className="pr-4">
+                <button
+                    className="bg-dlrg-blue text-dlrg-black-100 disabled:text-dlrg-black-900 disbaled:hover:text-dlrg-black-600 hover:bg-dlrg-blue-900 rounded p-2 font-bold"
+                    onClick={async () => {
+                        if (confirm("Wirklich löschen?")) {
+                            await deleteSwimmerAction(swimmer._id?.toString() || "");
+                        }
+                    }}>Löschen</button>
             </span> : <></>}
         </div>
         <dl>
