@@ -9,7 +9,7 @@ export default async function SwimmersPage() {
     const swimmers = await getSwimmersAction();
 
     return <div>
-        <H1>Schwimmer</H1>
+        <H1>Schwimmer ({swimmers.length})</H1>
         <SwimmersTable swimmers={swimmers} />
     </div>
 }
