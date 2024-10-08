@@ -42,13 +42,13 @@ export default function LogForm() {
     }
 
     return <div>
+        <div className="pb-4">
+            <select value={night} onChange={evnt => setNight(evnt.target.value)} className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-200 text-sm focus:ring-dlrg-blue focus:border-dlrg-blue">
+                <option value={"D"}>Regulär</option>
+                <option value={"N"}>Nachtpokal</option>
+            </select>
+        </div>
         {!swimmer ? <div>
-            <div className="pb-4">
-                <select value={night} onChange={evnt => setNight(evnt.target.value)} className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-200 text-sm focus:ring-dlrg-blue focus:border-dlrg-blue">
-                    <option value={"D"}>Regulär</option>
-                    <option value={"N"}>Nachtpokal</option>
-                </select>
-            </div>
             <div className="pb-4">
                 <Button active={mode === "reg"} onClick={() => setMode("reg")}>Nach Registiernummer</Button>
             </div>
