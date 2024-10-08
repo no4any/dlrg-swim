@@ -4,12 +4,11 @@ import ButtonSubmit from "@/components/input/ButtonSubmit.component";
 import Team from "@/lib/model/Team.interface";
 import { useState } from "react";
 import { useFormState } from "react-dom";
-import { ChangeDistanceEntryState } from "../../../laps/[id]/changeDistanceEntryForm.action";
-import changeTeamAction from "./changeTeam.action";
+import changeTeamAction, { ChangeTeamActionState } from "./changeTeam.action";
 
 export default function ChangeTeamForm({ id, teams, currentTeamId }: { id: string, teams: Team[], currentTeamId?: string }) {
     const [selectedId, setSelectedId] = useState<string>(currentTeamId || "NONE");
-    const [state, formAction] = useFormState<ChangeDistanceEntryState, FormData>(changeTeamAction, {})
+    const [state, formAction] = useFormState<ChangeTeamActionState, FormData>(changeTeamAction, {})
 
     return <form action={formAction}>
         {state.error ? <div className="block bg-dlrg-yellow rounded p-2 my-2"><b>Fehler: </b>Es ist ein unbekannter Fehler aufgetreten</div> : <></>}
