@@ -6,8 +6,9 @@ import { useState } from "react"
 import { useFormState } from "react-dom";
 import changeDistanceEntryFormAction, { ChangeDistanceEntryState } from "./changeDistanceEntryForm.action";
 
-export default function ChangeDistanceEntryForm({ id, laps }: { id: string, laps: number }) {
+export default function ChangeDistanceEntryForm({ id, laps, night }: { id: string, laps: number, night?: boolean }) {
     const [lapsState, setLapsState] = useState<number>(laps);
+    const [nightState, setNightState] = useState<"D" | "N">(night?"N":"D")
     const [state, formAction] = useFormState<ChangeDistanceEntryState, FormData>(changeDistanceEntryFormAction, {})
 
     return <div>
@@ -26,6 +27,12 @@ export default function ChangeDistanceEntryForm({ id, laps }: { id: string, laps
                         pattern="\d*"
                     />
                 </label>
+            </div>
+            <div className="pb-4">
+                <select name="night" value={nightState} onChange={evnt => setNightState(evnt.target.value as "D" | "N")} className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-200 text-sm focus:ring-dlrg-blue focus:border-dlrg-blue">
+                    <option value={"D"}>Regulär</option>
+                    <option value={"N"}>Nachtpokal</option>
+                </select>
             </div>
             <div>
                 <ButtonSubmit>Ändern</ButtonSubmit>

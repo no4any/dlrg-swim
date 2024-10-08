@@ -17,6 +17,6 @@ export default async function DistanceEntryPage({ params }: { params: { id: stri
         <H1>Eintrag anpassen</H1>
         <H2>Für Schwimmer: {swimmer?.lastName}, {swimmer?.firstName}</H2>
         <H3>Eintrag ID: {entry.nr}</H3>
-        <ChangeDistanceEntryForm id={params.id} laps={entry.laps} />
+        <ChangeDistanceEntryForm id={params.id} laps={entry.laps} night={entry.nightCup} />
     </div>
 }
