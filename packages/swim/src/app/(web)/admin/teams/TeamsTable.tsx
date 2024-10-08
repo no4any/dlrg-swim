@@ -21,8 +21,9 @@ export default function TeamsTable({ teams }: { teams: Team[] }) {
 }
 
 function TeamLine({ team }: { team: Team }) {
-    return <div className="grid grid-cols-2">
-        <div className="p-1">{team.name}</div>
-        <div className="text-right"><Link className="rounded-lg bg-dlrg-red-500 p-1" href={`/admin/teams/${team._id?.toString() || ""}`}>Zum Team</Link></div>
-    </div>
+    return <Link href={`/admin/teams/${team._id?.toString() || ""}`}>
+        <div className="grid grid-cols-1 hover:bg-dlrg-red-100 rounded-lg">
+            <div className="p-1">{team.name}</div>
+        </div>
+    </Link >
 }
