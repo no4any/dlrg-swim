@@ -10,6 +10,7 @@ import { ObjectId } from "mongodb";
 import getSession from "@/lib/auth/getSession";
 import findByCap from "../../../log/findByCap.action";
 import findByReg from "../../../log/findByReg.action";
+import { revalidatePath } from "next/cache";
 
 function formToRegistrationData(form: FormData): RegistrationData {
     return RegistrationDataSchema.parse({
@@ -70,5 +71,6 @@ export default async function registerAction(_prevState: RegisterActionState, fo
         return { error: true }
     }
 
+    revalidatePath("/admin");
     redirect(`/admin/swimmer/${id}`);
 }
