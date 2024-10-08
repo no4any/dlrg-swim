@@ -20,8 +20,8 @@ export const SwimmerSchema = z.object({
     optIn: z.boolean().optional(),
     publishName: z.boolean().optional(),
     capColor: z.string().optional(),
-    capNr: z.number().optional(),
-    regNr: z.number().optional(),
+    capNr: z.number().min(1).max(100).optional(),
+    regNr: z.number().min(100).max(999).optional(),
     newsletter: z.boolean().optional(),
 })
 

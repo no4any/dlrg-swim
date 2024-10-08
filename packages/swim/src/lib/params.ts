@@ -10,6 +10,7 @@ export const MONGO_SWIMMERS_DATABASE = env.MONGO_SWIMMERS_DATABASE || "swimmers"
 export const MONGO_SWIMMERS_COLLECTION = env.MONGO_SWIMMERS_COLLECTION || "swimmers";
 export const MONGO_DISTANCES_COLLECTION = env.MONGO_DISTANCES_COLLECTION || "distances";
 export const MONGO_TEAMS_COLLECTION = env.MONGO_TEAMS_COLLECTION || "teams";
+export const MONGO_USERS_COLLECTION = env.MONGO_USERS_COLLECTION || "users";
 export const MONGO_COUNTERS_COLLECTION = env.MONGO_COUNTERS_COLLECTION || "counters";
 
 export const HASH_SALT = env.HASH_SALT || "salt123";
@@ -20,3 +21,7 @@ export const SMTP_SECURE = SMTP_PORT === 465;
 export const SMTP_USERNAME = env.SMTP_USERNAME || "";
 export const SMTP_PASSWORD = env.SMTP_PASSWORD || "";
 export const SMTP_FROM = env.SMTP_FROM || '"DLRG Gießen 24h Schwimmen" <14@dlrg-giessen.de>';
+
+export const DEFAULT_USER = env.DEFAULT_USER || "default@mail.de";
+
+export const JWT_KEY = env.JWT_KEY || "JWTKEY";
