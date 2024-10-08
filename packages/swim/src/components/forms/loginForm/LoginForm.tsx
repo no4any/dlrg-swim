@@ -17,7 +17,14 @@ export default function LoginForm() {
                 <InputText name="name" title="Benutzername/E-Mail" />
             </div>
             <div className="mt-4">
-                <InputText name="password" title="Passwort" />
+                <label className="block text-sm font-medium">
+                    Passwort
+                    <input
+                        type="password"
+                        name="password"
+                        className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-200 text-sm focus:ring-dlrg-blue focus:border-dlrg-blue"
+                    />
+                </label>
             </div>
             <div className="mt-4">
                 <ButtonSubmit>Anmelden</ButtonSubmit>
