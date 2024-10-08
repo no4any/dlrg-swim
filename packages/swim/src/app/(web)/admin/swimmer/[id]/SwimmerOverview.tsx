@@ -27,6 +27,9 @@ export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimm
     return <div>
         <div className="pb-4">
             {swimmer.status === "ANNOUNCED" ? <ButtonLink href={`/admin/swimmer/${swimmer._id?.toString()}/register`}>Registrieren</ButtonLink> : <></>}
+            <span className="pl-4">
+                <ButtonLink href={`/admin/swimmer/${swimmer._id?.toString() || "undefined"}/changeTeam`}>Team ändern</ButtonLink>
+            </span>
         </div>
         <dl>
             <dt>Name</dt>
@@ -74,7 +77,7 @@ export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimm
                     <div className="grid grid-cols-3">
                         <div>{distance.nr}</div>
                         <div>{distance.laps}</div>
-                        <div>{distance.nightCup?"Nachpokal":""}</div>
+                        <div>{distance.nightCup ? "Nachpokal" : ""}</div>
                     </div>
                 </Link>)}
             </div>
