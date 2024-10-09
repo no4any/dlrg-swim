@@ -23,7 +23,6 @@ export default async function CertPage({ params }: { params: { id: string, hash:
 
     const name = `${swimmer.firstName} ${swimmer.lastName}`;
     const distance = await getDistanceForSwimmer(swimmer._id?.toString() || "");
-    console.log("DISTANCE", distance);
 
     if (!swimmer.birthday || swimmer.status !== "FINISHED") {
         return <Cert date={new Date()} distance={distance} name={name} />
