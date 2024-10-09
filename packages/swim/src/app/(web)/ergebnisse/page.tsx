@@ -27,7 +27,7 @@ export default async function ErgebnissePage() {
             <div><b>Strecke</b></div>
         </div>
         <div>
-            {teams.map(team => <TeamRow team={team} />)}
+            {teams.map(team => <TeamRow key={team._id?.toString() || ""} team={team} />)}
         </div>
     </div>
 }
