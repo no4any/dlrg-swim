@@ -34,7 +34,7 @@ export default function LogForm() {
         return <div>
             <H2>{swimmer.lastName}, {swimmer.firstName} ({swimmer.regNr}) ({swimmer.capColor} - {swimmer.capNr})</H2>
             <H3>Bahnen: {laps}</H3>
-            <H3>ID: {logNr}</H3>
+            <H3>ID: {logNr ? logNr : <b>Nicht erfasst. Schwimmer nicht vorhanden oder bereits geschlossen</b>}</H3>
             <div>
                 <Button onClick={reset}>Weiterer Eintrag</Button>
             </div>

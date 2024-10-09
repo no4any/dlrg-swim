@@ -6,6 +6,9 @@ import DistanceEntry from "@/lib/model/DistanceEntry.interface"
 import Swimmer from "@/lib/model/Swimmer.interface"
 import Link from "next/link";
 import deleteSwimmerAction from "./deleteSimmer.action";
+import { Medal } from "@/lib/medal/youthMedal";
+import closeForMedalAction from "./closeForMedal.action";
+import reactivateSwimmerAction from "./reactivateSwimmer.Action";
 
 function getAge(dob: Date): number {
     const diff_ms = Date.now() - dob.getTime();
@@ -18,7 +21,7 @@ function birthdayToReadable(date: string): string {
     return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`
 }
 
-export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimmer & { teamName?: string }, distances: DistanceEntry[] }) {
+export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimmer & { teamName?: string, medal: Medal, hash: string }, distances: DistanceEntry[] }) {
     const distanceAll = distances
         .reduce((acc, distance) => distance.laps + acc, 0);
     const distanceNight = distances
@@ -27,6 +30,9 @@ export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimm
 
     return <div>
         <div className="pb-4">
+            <span className="pr-4">
+                <ButtonLink href={`/anmelden/${swimmer._id?.toString()}/${swimmer.hash}`}>Seite des Users</ButtonLink>
+            </span>
             {swimmer.status === "ANNOUNCED" ? <span className="pr-4">
                 <ButtonLink href={`/admin/swimmer/${swimmer._id?.toString()}/register`}>Registrieren</ButtonLink>
             </span> : <></>}
@@ -38,6 +44,27 @@ export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimm
             </span>
             {swimmer.status === "REGISTERED" ? <span className="pr-4">
                 <ButtonLink href={`/admin/swimmer/${swimmer._id?.toString()}/changeRegData`}>Registrierung ändern</ButtonLink>
+            </span> : <></>}
+            {swimmer.medal && swimmer.status !== "FINISHED" ? <span className="pr-4">
+                <button
+                    className="bg-dlrg-blue text-dlrg-black-100 disabled:text-dlrg-black-900 disbaled:hover:text-dlrg-black-600 hover:bg-dlrg-blue-900 rounded p-2 font-bold"
+                    onClick={async () => {
+                        if (confirm("Wirklich schließen und Medallie abholen?")) {
+                            await closeForMedalAction(swimmer._id?.toString() || "");
+                        }
+                    }}>{swimmer.medal} Medaille und Urkunde abholen</button>
+            </span> : <></>}
+            {swimmer.medal && swimmer.status === "FINISHED" ? <span className="pr-4">
+                <ButtonLink href={`/anmelden/${swimmer._id?.toString()}/${swimmer.hash}/cert`}>Urkunde</ButtonLink>
+            </span> : <></>}
+            {swimmer.status === "FINISHED" ? <span className="pr-4">
+                <button
+                    className="bg-dlrg-blue text-dlrg-black-100 disabled:text-dlrg-black-900 disbaled:hover:text-dlrg-black-600 hover:bg-dlrg-blue-900 rounded p-2 font-bold"
+                    onClick={async () => {
+                        if (confirm("Wirklich wieder aktivieren?")) {
+                            await reactivateSwimmerAction(swimmer._id?.toString() || "");
+                        }
+                    }}>Reaktivieren</button>
             </span> : <></>}
             {swimmer.status === "ANNOUNCED" ? <span className="pr-4">
                 <button

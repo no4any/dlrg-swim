@@ -1,0 +1,76 @@
+@media print {
+    .print {
+        font-family: sans-serif;
+
+        .background {
+            position: fixed;
+            z-index: 0;
+            opacity: 0.2;
+
+            top: 150px;
+            left: 100px;
+        }
+
+        .footer {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            font-size: 18px;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 1fr;
+            grid-column-gap: 20px;
+            grid-row-gap: 0px;
+
+            z-index: 9999;
+
+            .date {
+                text-align: right;
+            }
+
+            .signature {
+                .details {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .page {
+            position: relative;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+
+            z-index: 9999;
+
+            h1,
+            h2,
+            h3,
+            p {
+                text-align: center;
+            }
+
+            h1 {
+                margin-top: 150px;
+                color: red;
+                font-size: 80px;
+            }
+
+            h2 {
+                color: blue;
+                font-size: 50px;
+            }
+
+            h3 {
+                color: green;
+                font-size: 50px;
+            }
+
+            p {
+                color: black;
+                font-size: 25px;
+            }
+        }
+    }
+}

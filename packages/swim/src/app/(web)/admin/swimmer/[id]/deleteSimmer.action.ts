@@ -1,7 +1,6 @@
 "use server"
 
 import getSession from "@/lib/auth/getSession"
-import getSwimmersCollection from "@/lib/mongo/getSwimmersCollection";
 import getSwimmer from "@/lib/mongo/operations/getSwimmer";
 import deleteSwimmer from "@/lib/mongo/operations/swimmers/deleteSwimmer";
 import { redirect } from "next/navigation";

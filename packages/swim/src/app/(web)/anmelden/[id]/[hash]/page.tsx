@@ -1,3 +1,4 @@
+import ButtonLink from "@/components/basic/buttonLink";
 import QrCode from "@/components/QrCode.component";
 import hash from "@/lib/hash";
 import Swimmer from "@/lib/model/Swimmer.interface";
@@ -44,12 +45,14 @@ export default async function RegisteredPage({ params }: { params: { id: string,
         <header className="mb-4">
             <h1 className="lg:text-5xl text-2xl text-dlrg-blue font-extrabold">
                 Ihre Anmeldung
-                <small className="block font-semibold text-dlrg-black-100 mt-4">
-                    Halten sie folgende Informationen bei der Anmeldung griffbereit.
-                </small>
-                <small className="block font-semibold text-dlrg-black-100 mt-4">
-                    Speichern sie wenn möglich diese Seite in Ihren Favoriten ab.
-                </small>
+                {swimmer.status === "ANNOUNCED" ? <>
+                    <small className="block font-semibold text-dlrg-black-100 mt-4">
+                        Halten sie folgende Informationen bei der Anmeldung griffbereit.
+                    </small>
+                    <small className="block font-semibold text-dlrg-black-100 mt-4">
+                        Speichern sie wenn möglich diese Seite in Ihren Favoriten ab.
+                    </small>
+                </> : <></>}
             </h1>
         </header>
         <main>
@@ -60,7 +63,12 @@ export default async function RegisteredPage({ params }: { params: { id: string,
                 <div className="mb-4 flex justify-center">
                     <QrCode msg={`${BASE_PATH}/admin/swimmer/${params.id}/register`} />
                 </div></> : <></>}
-
+            <div className="mb-4 justify-center">
+                <h2 className="text-2xl text-center font-extrabold mb-4">Weitere Links</h2>
+                <div className="text-center">
+                    <ButtonLink href={`/anmelden/${params.id}/${params.hash}/cert`}>Urkunde</ButtonLink>
+                </div>
+            </div>
             {teamLink ? <>
                 <div className="mb-4 justify-center">
                     <h2 className="text-2xl text-center font-extrabold">Teilen Sie diesen Link oder den QR-Code mit ihren Teammitglieder damit diese sich für das Team anmelden können</h2>
