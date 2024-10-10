@@ -4,7 +4,7 @@ import "server-only"
 import getSession from "@/lib/auth/getSession"
 import flatten from "@/lib/flatten"
 import { redirect } from "next/navigation"
-import getDistanceForSwimmer from "@/lib/mongo/operations/distances/getDistancesForSwimmer"
+import getDistancesForSwimmer from "@/lib/mongo/operations/distances/getDistancesForSwimmer"
 import DistanceEntry from "@/lib/model/DistanceEntry.interface"
 
 export default async function getDistancesAction(id: string): Promise<DistanceEntry[]> {
@@ -14,5 +14,5 @@ export default async function getDistancesAction(id: string): Promise<DistanceEn
         redirect('/login');
     }
 
-    return await flatten(await getDistanceForSwimmer(id));
+    return await flatten(await getDistancesForSwimmer(id));
 }
