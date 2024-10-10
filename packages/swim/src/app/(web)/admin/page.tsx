@@ -3,6 +3,7 @@ import getSession from "@/lib/auth/getSession";
 import getBreakfastBookingsAction from "./getBreakfastsBookings.action";
 import getDistanceTotal from "@/lib/mongo/operations/distances/getDistanceTotal";
 import getDistanceTotalNight from "@/lib/mongo/operations/distances/getDistanceTotalNight";
+import Link from "next/link";
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';
@@ -27,6 +28,12 @@ export default async function AdminPage() {
                 </div>
                 <div>
                     <H2>Frühstücke: <b>{breakfasts}</b></H2>
+                </div>
+                <div>
+                    <H2>Links</H2>
+                    <div><Link href="/ergebnisse">Ergebnisse</Link></div>
+                    <div><Link href="/rangliste">Rangliste</Link></div>
+                    <div><Link href="/rangliste/cert">Rangliste zum drucken</Link></div>
                 </div>
             </div>
         </div>

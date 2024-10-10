@@ -1,5 +1,6 @@
 import Image from "next/image";
 import LOGO from "./logo.png";
+import BINDE from "./binde.png";
 
 export default async function ChildrenCert({ name, distance, date, medal }: {
     name: string,
@@ -27,6 +28,7 @@ export default async function ChildrenCert({ name, distance, date, medal }: {
                 <div className="details">Kai Happel, Vorsitzender</div>
             </div>
         </div>
+        <Image src={BINDE} alt="Binde" className="binde" />
         <Image src={LOGO} alt="Hintergrund" className="background" width={500} />
     </div>
 }

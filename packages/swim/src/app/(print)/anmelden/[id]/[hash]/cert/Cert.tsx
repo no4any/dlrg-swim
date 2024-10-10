@@ -16,11 +16,11 @@ export default async function Cert({ name, distance, date }: {
         </div>
         <div className="footer">
             <div className="date">
-                Gießen, den {date.getDate()+1}.{date.getMonth()}.{date.getFullYear()}
+                Gießen, den {date.getDate()}.{date.getMonth()+1}.{date.getFullYear()}
             </div>
             <div className="signature">
                 <div className="sig">_______________________________</div>
-                <div className="details">Kai Happel, Vorsitzender</div>
+                <div className="details">Alexander Sack, Leiter 24 Stunden Schwimmen</div>
             </div>
         </div>
         <Image src={LOGO} alt="Hintergrund" className="background" width={500} />
