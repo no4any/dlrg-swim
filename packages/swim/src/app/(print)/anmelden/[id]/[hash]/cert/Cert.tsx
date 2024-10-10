@@ -1,5 +1,6 @@
 import Image from "next/image";
 import LOGO from "./logo.png";
+import BINDE from "./binde.png";
 
 export default async function Cert({ name, distance, date }: {
     name: string,
@@ -23,6 +24,7 @@ export default async function Cert({ name, distance, date }: {
                 <div className="details">Alexander Sack, Leiter 24 Stunden Schwimmen</div>
             </div>
         </div>
+        <Image src={BINDE} alt="Binde" className="binde" />
         <Image src={LOGO} alt="Hintergrund" className="background" width={500} />
     </div>
 }
