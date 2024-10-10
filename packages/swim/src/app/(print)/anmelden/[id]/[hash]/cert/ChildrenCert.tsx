@@ -25,7 +25,7 @@ export default async function ChildrenCert({ name, distance, date, medal, age }:
             </div>
             <div className="signature">
                 <div className="sig">_______________________________</div>
-                <div className="details">Kai Happel, Vorsitzender</div>
+                <div className="details">Alexander Sack, Leiter 24 Stunden Schwimmen</div>
             </div>
         </div>
         <Image src={BINDE} alt="Binde" className="binde" />
