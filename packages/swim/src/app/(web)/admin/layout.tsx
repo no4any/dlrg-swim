@@ -1,6 +1,7 @@
 import getSession from "@/lib/auth/getSession";
 import Link from "next/link";
 import LogoutLink from "./Logout";
+import { redirect } from "next/navigation";
 
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
@@ -9,7 +10,7 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
   const { mail } = await getSession();
 
   if (mail === null) {
-    return <div><h1>Sie sind nicht angemeldet</h1></div>
+    redirect("/login");
   }
 
   return <div>
