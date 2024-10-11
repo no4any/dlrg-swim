@@ -1,6 +1,5 @@
 "use client"
 
-import printAction from "@/app/(print)/print.action"
 import ButtonLink from "@/components/basic/buttonLink"
 import { useState } from "react"
 
