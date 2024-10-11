@@ -7,6 +7,7 @@ import RankedCert from "./RankedCert";
 import TeamCert from "./TeamCert";
 import PlainCert from "./PlainCert";
 import getSession from "@/lib/auth/getSession";
+import Footer from "../../Footer";
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';
@@ -71,31 +72,30 @@ export default async function ResultsPrintPage() {
         <div className="page"><h1>Altergruppe 76 bis 99 weiblich</h1></div>
         {results.swimmersFemale76.slice(0,3).map((swimmer, i) => <RankedCert key={i} rank={++i} title="Weiteste Strecke in der Altersgruppe 76 bis 99 Jahre" swimmer={swimmer} />)}
 
-        <div className="page"><h1>Beste Leistung sonstiger Teams</h1></div>
+        
+        <div className="page"><h2>Beste Leistung sonstiger Teams</h2></div>
         {results.teamsDiv.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Leistung sonstiger Teams" team={team} />)}
-        <div className="page"><h1>Beste Durchschnittsleistung sonstiger Teams</h1></div>
+        <div className="page"><h2>Beste Durchschnittsleistung sonstiger Teams</h2></div>
         {results.teamsDivAvg.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Durchschnittsleistung sonstiger Teams" team={team} />)}
 
-        <div className="page"><h1>Beste Leistung eines Firmenteams</h1></div>
+        
+        <div className="page"><h2>Beste Leistung eines Firmenteams</h2></div>
         {results.teamsCompany.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Leistung eines Firmenteams" team={team} />)}
-        <div className="page"><h1>Beste Durchschnittsleistung eines Firmenteams</h1></div>
+        <div className="page"><h2>Beste Durchschnittsleistung eines Firmenteams</h2></div>
         {results.teamsCompanyAvg.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Durchschnittsleistung eines Firmenteams" team={team} />)}
 
-        <div className="page"><h1>Beste Leistung eines Schwimmvereins</h1></div>
+        <div className="page"><h2>Beste Leistung eines Schwimmvereins</h2></div>
         {results.teamsClub.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Leistung eines Schwimmvereins" team={team} />)}
-        <div className="page"><h1>Beste Durchschnittsleistung eines Schwimmvereins</h1></div>
+        <div className="page"><h2>Beste Durchschnittsleistung eines Schwimmvereins</h2></div>
         {results.teamsClubAvg.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Durchschnittsleistung eines Schwimmvereins" team={team} />)}
+        <Footer />
+    </div>
 
-        <div className="footer">
-            <div className="date">
-            Gießen, den {date.getMonth()+1 < 10?"0":""}{date.getDate()+1}.{date.getMonth() < 10?"0":""}{date.getMonth()}.{date.getFullYear()}
-            </div>
-            <div className="signature">
-                <div className="sig">_______________________________</div>
-                <div className="details">Alexander Sack, Leiter 24 Stunden Schwimmen</div>
-            </div>
-        </div>
-        <Image src={BINDE} alt="Binde" className="binde" />
-        <Image src={LOGO} alt="Hintergrund" className="background all" width={750} />
+    return <div className="print">
+        
+        
+
+
+        <Footer />
     </div>
 }

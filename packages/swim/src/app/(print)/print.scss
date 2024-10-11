@@ -8,18 +8,19 @@ body {
         page-break-before: always;
         font-family: sans-serif;
 
+        .sign {
+            position: fixed;
+            bottom: 1.25cm;
+            right: 2.5cm;
+        }
+
         .background {
             position: fixed;
             z-index: 0;
             opacity: 0.25;
 
-            top: 175px;
+            top: 200px;
             left: 150px;
-
-            &.all {
-                top: 200px;
-                left: 90px;
-            }
         }
 
         .binde {

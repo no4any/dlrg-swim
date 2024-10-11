@@ -1,6 +1,8 @@
 import Image from "next/image";
 import LOGO from "./logo.png";
 import BINDE from "./binde.png";
+import SIGN from "./sig.png";
+import Footer from "@/app/(print)/Footer";
 
 export default async function Cert({ name, distance, date }: {
     name: string,
@@ -15,16 +17,6 @@ export default async function Cert({ name, distance, date }: {
             <h3>{distance} m</h3>
             <p>geschwommen.</p>
         </div>
-        <div className="footer">
-            <div className="date">
-            Gießen, den {date.getMonth()+1 < 10?"0":""}{date.getDate()+1}.{date.getMonth() < 10?"0":""}{date.getMonth()}.{date.getFullYear()}
-            </div>
-            <div className="signature">
-                <div className="sig">_______________________________</div>
-                <div className="details">Alexander Sack, Leiter 24 Stunden Schwimmen</div>
-            </div>
-        </div>
-        <Image src={BINDE} alt="Binde" className="binde" />
-        <Image src={LOGO} alt="Hintergrund" className="background" width={500} />
+        <Footer />
     </div>
 }
