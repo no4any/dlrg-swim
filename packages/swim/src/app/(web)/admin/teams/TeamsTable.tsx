@@ -39,7 +39,7 @@ function TeamLine({ team }: { team: Team }) {
     return <Link href={`/admin/teams/${team._id?.toString() || ""}`}>
         <div className="grid grid-cols-2 hover:bg-dlrg-red-100 rounded-lg">
             <div className="p-1">{team.name}</div>
-            <div className="p-1">{team.type === "S"?"Sonstige":team.type === "F"?"Firma":"Verein"}</div>
+            <div className="p-1">{team.type === "S" || !team.type ? "Sonstige" : team.type === "F" ? "Firma" : "Verein"}</div>
         </div>
     </Link >
 }
