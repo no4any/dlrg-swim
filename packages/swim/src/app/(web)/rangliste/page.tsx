@@ -27,13 +27,13 @@ export default async function RankPage() {
         <Result title="Weiteste Strecke Nachtpokal weiblich" swimmers={results.swimmersFemaleNight} night></Result>
 
         <TeamResult title="Weiteste Strecke Team (Sonstige)" teams={results.teamsDiv} />
-        <TeamResult title="Weiteste Durchschnitt Team (Sonstige)" teams={results.teamsDivAvg} average />
+        <TeamResult title="Weitester Durchschnitt Team (Sonstige)" teams={results.teamsDivAvg} average />
 
         <TeamResult title="Weiteste Strecke Team (Schwimmverein)" teams={results.teamsClub} />
-        <TeamResult title="Weiteste Durchschnitt Team (Schwimmverein)" teams={results.teamsClubAvg} average />
+        <TeamResult title="Weitester Durchschnitt Team (Schwimmverein)" teams={results.teamsClubAvg} average />
 
         <TeamResult title="Weiteste Strecke Team (Firma)" teams={results.teamsCompany} />
-        <TeamResult title="Weiteste Durchschnitt Team (Firma)" teams={results.teamsCompanyAvg} average />
+        <TeamResult title="Weitester Durchschnitt Team (Firma)" teams={results.teamsCompanyAvg} average />
     </div>
 }
 
