@@ -12,9 +12,10 @@ export default async function LapsPage() {
         <H1>Erfasste Bahnen</H1>
         <div>
             {distances.map(distance => <Link key={distance._id?.toString() || "key"} href={`/admin/laps/${distance._id?.toString() || "undefined"}`}>
-                <div className="grid grid-cols-3 hover:bg-dlrg-red-100 rounded-lg">
+                <div className="grid grid-cols-4 hover:bg-dlrg-red-100 rounded-lg">
                     <div>{distance.nr}</div>
                     <div>{distance.laps}</div>
+                    <div>{distance.registerer}</div>
                     <div>{distance.nightCup ? "Nachtpokal" : ""}</div>
                 </div>
             </Link>)}
