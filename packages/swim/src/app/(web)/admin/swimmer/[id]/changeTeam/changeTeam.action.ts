@@ -5,6 +5,7 @@ import "server-only"
 import { ObjectId } from "mongodb";
 import { redirect } from "next/navigation";
 import getSwimmersCollection from "@/lib/mongo/getSwimmersCollection";
+import { revalidatePath } from "next/cache";
 
 export interface ChangeTeamActionState {
     error?: boolean;
@@ -29,5 +30,6 @@ export default async function changeTeamAction(_prevState: ChangeTeamActionState
         return { error: true }
     }
     
+    revalidatePath('/admin');
     redirect('/admin/swimmer');
 }

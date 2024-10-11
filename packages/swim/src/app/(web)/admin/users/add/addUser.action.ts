@@ -7,6 +7,7 @@ import getSession from "@/lib/auth/getSession";
 import userExists from "@/lib/mongo/operations/users/userExists";
 import addUser from "@/lib/mongo/operations/users/addUser";
 import { z } from "zod";
+import { revalidatePath } from "next/cache";
 
 export default async function addUserAction(_prevState: AddUserState, form: FormData): Promise<AddUserState> {
     const { isAdmin } = await getSession();
@@ -32,6 +33,6 @@ export default async function addUserAction(_prevState: AddUserState, form: Form
         }
     }
 
-
+    revalidatePath('/admin');
     redirect("/admin/users")
 }

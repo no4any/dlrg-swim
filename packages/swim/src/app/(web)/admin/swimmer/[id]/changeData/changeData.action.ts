@@ -4,6 +4,7 @@ import SwimErrorNoSwimmer from "@/lib/error/SwimErrorNoSwimmer";
 import Swimmer, { SwimmerSchema } from "@/lib/model/Swimmer.interface";
 import getSwimmersCollection from "@/lib/mongo/getSwimmersCollection";
 import { ObjectId } from "mongodb";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import "server-only"
 
@@ -66,5 +67,6 @@ export default async function changeDataAction(_prevState: ChangeDataActionState
         return { error: true }
     }
 
+    revalidatePath('/admin');
     redirect(`/admin/swimmer/${id}`)
 }

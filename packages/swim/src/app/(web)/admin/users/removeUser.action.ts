@@ -4,6 +4,7 @@ import "server-only"
 
 import deleteUser from "@/lib/mongo/operations/users/deleteUser";
 import getSession from "@/lib/auth/getSession";
+import { revalidatePath } from "next/cache";
 
 export default async function removeUser(user: string): Promise<boolean> {
     const { mail, isAdmin } = await getSession();
@@ -20,5 +21,6 @@ export default async function removeUser(user: string): Promise<boolean> {
         return false;
     }
 
+    revalidatePath('/admin');
     return await deleteUser(user);
 }

@@ -6,6 +6,7 @@ import getSession from "@/lib/auth/getSession";
 import { redirect } from "next/navigation";
 import getTeamsCollection from "@/lib/mongo/getTeamsCollection";
 import { ObjectId } from "mongodb";
+import { revalidatePath } from "next/cache";
 
 export default async function changeTeamAction(_prev: ChangeTeamFormState, form: FormData): Promise<ChangeTeamFormState> {
     const { mail } = await getSession();
@@ -47,5 +48,6 @@ export default async function changeTeamAction(_prev: ChangeTeamFormState, form:
         }
     }
 
+    revalidatePath('/admin');
     redirect(`/admin/teams/${id}`)
 }
