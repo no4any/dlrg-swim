@@ -15,6 +15,11 @@ body {
 
             top: 175px;
             left: 150px;
+
+            &.all {
+                top: 200px;
+                left: 90px;
+            }
         }
 
         .binde {

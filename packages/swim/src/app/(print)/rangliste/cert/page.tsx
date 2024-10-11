@@ -88,7 +88,7 @@ export default async function ResultsPrintPage() {
 
         <div className="footer">
             <div className="date">
-                Gießen, den {date.getDate()}.{date.getMonth() + 1}.{date.getFullYear()}
+            Gießen, den {date.getMonth()+1 < 10?"0":""}{date.getDate()+1}.{date.getMonth() < 10?"0":""}{date.getMonth()}.{date.getFullYear()}
             </div>
             <div className="signature">
                 <div className="sig">_______________________________</div>
@@ -96,6 +96,6 @@ export default async function ResultsPrintPage() {
             </div>
         </div>
         <Image src={BINDE} alt="Binde" className="binde" />
-        <Image src={LOGO} alt="Hintergrund" className="background" width={500} />
+        <Image src={LOGO} alt="Hintergrund" className="background all" width={750} />
     </div>
 }
