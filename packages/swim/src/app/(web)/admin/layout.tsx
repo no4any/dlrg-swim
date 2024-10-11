@@ -15,14 +15,14 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
 
   return <div>
     <div className="bg-white/25 p-4 rounded-lg backdrop-blur xl:mx-64 lg:mx-32 md:mx-16 mx-8 mt-4 mb-8">
-      <Link href="/admin" className="mr-2"><b>Dashboard</b></Link>
-      <Link href="/admin/log" className="mr-2"><b>Erfassen</b></Link>
-      <Link href="/admin/laps" className="mr-2"><b>Bahnen</b></Link>
-      <Link href="/admin/swimmer" className="mr-2"><b>Schwimmer</b></Link>
-      <Link href="/admin/teams" className="mr-2"><b>Teams</b></Link>
-      <Link href="/admin/users" className="mr-2"><b>Benutzerverwaltung</b></Link>
-      <Link href="/admin/users/add" className="mr-2"><b>Benutzer hinzufügen</b></Link>
-      <Link href="/admin/user" className="mr-2"><b>Passwort ändern</b></Link>
+      <Link href="/admin" className="mr-2"><b>Dashboard</b></Link>|
+      <Link href="/admin/log" className="mr-2 ml-2"><b>Erfassen</b></Link>|
+      <Link href="/admin/laps" className="mr-2 ml-2"><b>Bahnen</b></Link>|
+      <Link href="/admin/swimmer" className="mr-2 ml-2"><b>Schwimmer</b></Link>|
+      <Link href="/admin/teams" className="mr-2 ml-2"><b>Teams</b></Link>|
+      <Link href="/admin/users" className="mr-2 ml-2"><b>Benutzerverwaltung</b></Link>|
+      <Link href="/admin/users/add" className="mr-2 ml-2"><b>Benutzer hinzufügen</b></Link>|
+      <Link href="/admin/user" className="ml-2 mr-2"><b>Passwort ändern</b></Link>|
       <LogoutLink />
     </div>
     <div className="bg-white/25 p-4 rounded-lg backdrop-blur xl:mx-64 lg:mx-32 md:mx-16 mx-8 mt-4 mb-8">
