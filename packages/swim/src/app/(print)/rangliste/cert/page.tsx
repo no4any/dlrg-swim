@@ -1,8 +1,5 @@
 import getResultsAction from "@/app/(web)/rangliste/getResults.action"
 
-import LOGO from "@/app/(print)/anmelden/[id]/[hash]/cert/logo.png";
-import BINDE from "@/app/(print)/anmelden/[id]/[hash]/cert/binde.png";
-import Image from "next/image";
 import RankedCert from "./RankedCert";
 import TeamCert from "./TeamCert";
 import PlainCert from "./PlainCert";
