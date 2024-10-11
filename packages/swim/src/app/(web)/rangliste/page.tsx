@@ -3,11 +3,23 @@ import Swimmer from "@/lib/model/Swimmer.interface";
 import Team from "@/lib/model/Team.interface";
 import getResultsAction from "./getResults.action";
 
+export const revalidate = 300;
+
+function dateToString(date: Date) {
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} um ${hours < 10 ? "0" : ""}${date.getHours()}:${minutes < 10 ? "0" : ""}${date.getMinutes()} Uhr`
+}
+
 export default async function RankPage() {
     const results = await getResultsAction();
 
     return <div>
         <H1>Ergebnisse</H1>
+
+        <H2>Stand: {dateToString(new Date)}</H2>
+
         <Result title="Weiteste Strecke" swimmers={results.swimmers}></Result>
         <Result title="Weiteste Strecke männlich" swimmers={results.swimmersMale}></Result>
         <Result title="Weiteste Strecke weiblich" swimmers={results.swimmersFemale}></Result>
