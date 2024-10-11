@@ -5,6 +5,7 @@ import getDistanceTotal from "@/lib/mongo/operations/distances/getDistanceTotal"
 import getDistanceTotalNight from "@/lib/mongo/operations/distances/getDistanceTotalNight";
 import Link from "next/link";
 import PrintTool from "./PrintTool";
+import Swimmer from "@/lib/model/Swimmer.interface";
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';
@@ -12,7 +13,9 @@ export const dynamic = 'force-dynamic';
 export default async function AdminPage() {
     const { mail } = await getSession();
 
-    const breakfasts: number = (await getBreakfastBookingsAction()).length;
+    const breakfasts: Swimmer[] = await getBreakfastBookingsAction();
+    const breakfastsTotal: number = breakfasts.length;
+    const breakfastsRegistered: number = breakfasts.filter(swimmer => swimmer.status !== "ANNOUNCED").length;
     const distanceTotal: number = await getDistanceTotal();
     const distanceTotalNight: number = await getDistanceTotalNight();
 
@@ -20,7 +23,7 @@ export default async function AdminPage() {
         return <div>
             <H1>Dashboard</H1>
             <p><b>Hallo {mail}</b></p>
-            <div className="grid grid-cols-2 mt-4">
+            <div className="grid lg:grid-cols-2 mt-4">
                 <div>
                     <H2>Bahnen gesamt: <b>{distanceTotal}m ({distanceTotal / 50} Bahnen)</b></H2>
                 </div>
@@ -28,7 +31,7 @@ export default async function AdminPage() {
                     <H2>Bahnen Nachpokal: <b>{distanceTotalNight}m ({distanceTotalNight / 50} Bahnen)</b></H2>
                 </div>
                 <div>
-                    <H2>Frühstücke: <b>{breakfasts}</b></H2>
+                    <H2>Frühstücke: <b>{breakfastsTotal} ({breakfastsRegistered} Angemeldet)</b></H2>
                 </div>
                 <div>
                     <H2>Links</H2>
