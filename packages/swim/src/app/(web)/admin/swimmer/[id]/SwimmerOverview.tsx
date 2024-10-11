@@ -94,18 +94,18 @@ export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimm
 
         <div>
             <H2>Bahnen gesamt: {distanceAll}</H2>
-            <H2>Bahnen Nachpokal: {distanceNight}</H2>
+            <H2>Bahnen Nachtpokal: {distanceNight}</H2>
             <div>
                 <div className="grid grid-cols-3">
                     <div className="p-1"><b>Laufende Nummer</b></div>
                     <div className="p-1"><b>Bahnen</b></div>
-                    <div className="p-1"><b>Nachpokal</b></div>
+                    <div className="p-1"><b>Nachtpokal</b></div>
                 </div>
                 {distances.map(distance => <Link key={distance._id?.toString() || "key"} href={`/admin/laps/${distance._id?.toString() || "undefined"}`}>
                     <div className="grid grid-cols-3 hover:bg-dlrg-red-100 rounded-lg">
                         <div className="p-1">{distance.nr}</div>
                         <div className="p-1">{distance.laps}</div>
-                        <div className="p-1">{distance.nightCup ? "Nachpokal" : ""}</div>
+                        <div className="p-1">{distance.nightCup ? "Nachtpokal" : ""}</div>
                     </div>
                 </Link>)}
             </div>

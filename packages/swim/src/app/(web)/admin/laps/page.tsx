@@ -15,7 +15,7 @@ export default async function LapsPage() {
                 <div className="grid grid-cols-3 hover:bg-dlrg-red-100 rounded-lg">
                     <div>{distance.nr}</div>
                     <div>{distance.laps}</div>
-                    <div>{distance.nightCup ? "Nachpokal" : ""}</div>
+                    <div>{distance.nightCup ? "Nachtpokal" : ""}</div>
                 </div>
             </Link>)}
         </div>

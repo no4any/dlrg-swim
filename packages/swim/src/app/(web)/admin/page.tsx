@@ -28,7 +28,7 @@ export default async function AdminPage() {
                     <H2>Bahnen gesamt: <b>{distanceTotal}m ({distanceTotal / 50} Bahnen)</b></H2>
                 </div>
                 <div>
-                    <H2>Bahnen Nachpokal: <b>{distanceTotalNight}m ({distanceTotalNight / 50} Bahnen)</b></H2>
+                    <H2>Bahnen Nachtpokal: <b>{distanceTotalNight}m ({distanceTotalNight / 50} Bahnen)</b></H2>
                 </div>
                 <div>
                     <H2>Frühstücke: <b>{breakfastsTotal} ({breakfastsRegistered} Angemeldet)</b></H2>
