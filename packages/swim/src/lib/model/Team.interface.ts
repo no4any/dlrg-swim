@@ -6,6 +6,7 @@ export const TeamSchema = z.object({
     name: z.string().min(2),
     lowerName: z.string().min(2),
     owner: z.string().min(2),
+    type: z.enum(["S", "F", "V"]).optional()
 })
 
 type Team = z.infer<typeof TeamSchema>

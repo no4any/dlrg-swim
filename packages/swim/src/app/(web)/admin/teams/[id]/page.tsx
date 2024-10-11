@@ -1,3 +1,4 @@
+import ButtonLink from "@/components/basic/buttonLink";
 import { H1, H2, H3 } from "@/components/basic/h";
 import getSwimmer from "@/lib/mongo/operations/getSwimmer";
 import getTeam from "@/lib/mongo/operations/getTeam";
@@ -21,6 +22,9 @@ export default async function TeamPage({ params }: { params: { id: string } }) {
 
     return <div>
         <H1>Team: {team.name}</H1>
+        <div className="pb-4">
+            <ButtonLink href={`/admin/teams/${params.id}/change`}>Ändern</ButtonLink>
+        </div>
         <H2>Teamleiter</H2>
         <div>
             <Link href={`/admin/swimmer/${leader?._id?.toString() || ""}`}>

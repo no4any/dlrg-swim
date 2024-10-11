@@ -10,6 +10,6 @@ export default async function TeamsPage() {
 
     return <div>
         <H1>Teams</H1>
-        <TeamsTable teams={teams} />
+        <TeamsTable teams={teams.sort((a, b) => a.lowerName > b.lowerName ? 1 : -1)} />
     </div>
 }

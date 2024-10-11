@@ -1,6 +1,7 @@
 "use server"
 
 import "server-only"
+
 import getSwimmerWithResultsAction from "./getSwimmersWithResults.action";
 import getTeamWithResults from "./getTeamsWithResults.action";
 
@@ -12,7 +13,7 @@ export default async function getResultsAction() {
     const swimmersMale = swimmersByDistance.filter(swimmer => swimmer.gender === "M");
     const swimmersFemale = swimmersByDistance.filter(swimmer => swimmer.gender === "W");
 
-    const swimmeryByNight = swimmersByDistance.sort((a, b) => a.night > b.night ? -1 : 1)
+    const swimmeryByNight = swimmersByDistance.filter(a => true).sort((a, b) => a.night > b.night ? -1 : 1)
 
     const swimmersMaleNight = swimmeryByNight.filter(swimmer => swimmer.gender === "M");
     const swimmersFemaleNight = swimmeryByNight.filter(swimmer => swimmer.gender === "W");
@@ -59,7 +60,13 @@ export default async function getResultsAction() {
         swimmersFemale66: swimmersFemale.filter((swimmer) => swimmer.age >= 66 && swimmer.age <= 75).slice(0, 3),
         swimmersFemale76: swimmersFemale.filter((swimmer) => swimmer.age >= 76 && swimmer.age <= 99).slice(0, 3),
 
-        teams,
-        teamsAvg,
+        teamsDiv: teams.filter(team => !team.type || team.type === "S"),
+        teamsDivAvg: teamsAvg.filter(team => !team.type || team.type === "S"),
+
+        teamsClub: teams.filter(team => team.type === "V"),
+        teamsClubAvg: teamsAvg.filter(team => team.type === "V"),
+
+        teamsCompany: teams.filter(team => team.type === "F"),
+        teamsCompanyAvg: teamsAvg.filter(team => team.type === "F"),
     }
 }
