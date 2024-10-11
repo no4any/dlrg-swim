@@ -9,6 +9,7 @@ import deleteSwimmerAction from "./deleteSimmer.action";
 import { Medal } from "@/lib/medal/youthMedal";
 import closeForMedalAction from "./closeForMedal.action";
 import reactivateSwimmerAction from "./reactivateSwimmer.Action";
+import getTeam from "@/lib/mongo/operations/getTeam";
 
 function getAge(dob: Date): number {
     const diff_ms = Date.now() - dob.getTime();
@@ -76,53 +77,35 @@ export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimm
                     }}>Löschen</button>
             </span> : <></>}
         </div>
-        <dl>
-            <dt>Name</dt>
-            <dd>{swimmer.lastName}, {swimmer.firstName}</dd>
-
-            {swimmer.gender ? <>
-                <dt>Geschlecht</dt>
-                <dd>{swimmer.gender}</dd>
+        <div className="grid lg:grid-cols-2 mt-4">
+            <div><H2>Name</H2><span>{swimmer.lastName}, {swimmer.firstName}</span></div>
+            <div><H2>Geschlecht</H2><span>{!swimmer.gender || swimmer.gender === "0" ? "Keine Angabe" : (swimmer.gender === "W" ? "Weiblich" : "Männlich")}</span></div>
+            <div><H2>E-Mail</H2><span>{swimmer.email}</span></div>
+            <div><H2>Herkunft</H2><span>{swimmer.city?.trim() || <b><i>Keine Angabe</i></b>}</span></div>
+            <div><H2>Geburtdatum</H2><span>{swimmer.birthday ? birthdayToReadable(swimmer.birthday) : <b><i>Keine Angabe</i></b>}</span></div>
+            <div><H2>Alter</H2><span>{swimmer.birthday ? getAge(new Date(swimmer.birthday)) : <b><i>Keine Angabe</i></b>}</span></div>
+            {swimmer.status === "ANNOUNCED" ? <>
+                <div><H2>Bandnummer</H2><span>{swimmer.regNr}</span></div>
+                <div><H2>Bandekappe</H2><span>{swimmer.capColor} - {swimmer.capNr}</span></div>
             </> : <></>}
+            <div><H2>Team</H2><span>{swimmer.teamName ? <Link href={`/admin/teams/${swimmer.teamId}`}>{swimmer.teamName}</Link> : <b><i>Kein Team</i></b>}</span></div>
+            <div><H2>Frühstück</H2><span>{swimmer.breakfast ? "Ja" : "Nein"}</span></div>
+        </div>
 
-            <dt>E-Mail</dt>
-            <dd>{swimmer.email}</dd>
-
-            {swimmer.city ? <>
-                <dt>Stadt</dt>
-                <dd>{swimmer.city}</dd>
-            </> : <></>}
-
-            {swimmer.birthday ? <>
-                <dt>Geburtstsg</dt>
-                <dd>{birthdayToReadable(swimmer.birthday)}</dd>
-
-                <dt>Alter</dt>
-                <dd>{getAge(new Date(swimmer.birthday))}</dd>
-            </> : <></>}
-
-            {swimmer.status !== "ANNOUNCED" ? <>
-                <dt>Bandnummer</dt>
-                <dd>{swimmer.regNr}</dd>
-
-                <dt>Badekappe</dt>
-                <dd>{swimmer.capColor} - {swimmer.capNr}</dd>
-            </> : <></>}
-
-            {swimmer.teamName ? <>
-                <dt>Team</dt>
-                <dd>{swimmer.teamName}</dd>
-            </> : <></>}
-        </dl>
         <div>
-            <H2>Gesamtestrecke geschwommen: {distanceAll}</H2>
-            <H2>Im Nachpokal geschwommen: {distanceNight}</H2>
+            <H2>Bahnen gesamt: {distanceAll}</H2>
+            <H2>Bahnen Nachpokal: {distanceNight}</H2>
             <div>
+                <div className="grid grid-cols-3">
+                    <div className="p-1"><b>Laufende Nummer</b></div>
+                    <div className="p-1"><b>Bahnen</b></div>
+                    <div className="p-1"><b>Nachpokal</b></div>
+                </div>
                 {distances.map(distance => <Link key={distance._id?.toString() || "key"} href={`/admin/laps/${distance._id?.toString() || "undefined"}`}>
-                    <div className="grid grid-cols-3">
-                        <div>{distance.nr}</div>
-                        <div>{distance.laps}</div>
-                        <div>{distance.nightCup ? "Nachpokal" : ""}</div>
+                    <div className="grid grid-cols-3 hover:bg-dlrg-red-100 rounded-lg">
+                        <div className="p-1">{distance.nr}</div>
+                        <div className="p-1">{distance.laps}</div>
+                        <div className="p-1">{distance.nightCup ? "Nachpokal" : ""}</div>
                     </div>
                 </Link>)}
             </div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function SwimmersTable({ swimmers }: { swimmers: Swimmer[] }) {
-    const [localSwimmers, setLocalSwimmers] = useState<Swimmer[]>(swimmers);
+    const [localSwimmers, setLocalSwimmers] = useState<Swimmer[]>(swimmers.sort((a, b) => a.lastName.trim() > b.lastName.trim() ? 1 : -1));
     const [searchString, setSearchString] = useState<string>("");
     const [searchStatus, setSearchStatus] = useState<"ANNOUNCED" | "REGISTERED" | "FINISHED" | "NONE">("NONE");
 
