@@ -8,7 +8,7 @@ export default function Footer({ all }: { all?: boolean }) {
     return <>
         <div className="footer">
             <div className="date">
-                Gießen, den {date.getMonth() + 1 < 10 ? "0" : ""}{date.getDate() + 1}.{date.getMonth() < 10 ? "0" : ""}{date.getMonth()}.{date.getFullYear()}
+                Gießen, den {date.getDate() < 10 ? "0" : ""}{date.getDate()}.{date.getMonth()+1 < 10 ? "0" : ""}{date.getMonth()+1}.{date.getFullYear()}
             </div>
             <div className="signature">
                 <div className="sig">_______________________________</div>
