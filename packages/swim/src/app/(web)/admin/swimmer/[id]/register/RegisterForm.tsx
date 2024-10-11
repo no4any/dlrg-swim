@@ -21,6 +21,8 @@ export default function RegisterForm({ swimmer }: { swimmer: Swimmer }) {
         <H2>E-Mail</H2>
         <div>{swimmer.email}</div>
         <H2>Registrierung</H2>
+        {swimmer.birthday ? <div className="block bg-dlrg-yellow rounded p-2 my-2"><b>WARNUNG: </b>KEINE Teilnahme an Alterswertung</div> : <></>}
+        {!swimmer.gender ||  swimmer.gender === "0"? <div className="block bg-dlrg-yellow rounded p-2 my-2"><b>WARNUNG: </b>Einzelwertung NICHT möglich</div> : <></>}
         <form action={formAction}>
             <input name="id" type="hidden" value={swimmer._id?.toString() || ""} />
             <div className="pb-4">
