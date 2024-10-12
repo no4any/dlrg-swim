@@ -72,27 +72,19 @@ export default async function ResultsPrintPage() {
         
         <div className="page"><h2>Beste Leistung sonstiger Teams</h2></div>
         {results.teamsDiv.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Leistung sonstiger Teams" team={team} />)}
-        <div className="page"><h2>Beste Durchschnittsleistung sonstiger Teams</h2></div>
-        {results.teamsDivAvg.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Durchschnittsleistung sonstiger Teams" team={team} />)}
+        <div className="page"><h2>Beste Leistung im Durchschnitt sonstiger Teams</h2></div>
+        {results.teamsDivAvg.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Leistung im Durchschnitt sonstiger Teams" team={team} />)}
 
         
         <div className="page"><h2>Beste Leistung eines Firmenteams</h2></div>
         {results.teamsCompany.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Leistung eines Firmenteams" team={team} />)}
-        <div className="page"><h2>Beste Durchschnittsleistung eines Firmenteams</h2></div>
-        {results.teamsCompanyAvg.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Durchschnittsleistung eines Firmenteams" team={team} />)}
+        <div className="page"><h2>Beste Leistung im Durchschnitt eines Firmenteams</h2></div>
+        {results.teamsCompanyAvg.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Leistung im Durchschnitt eines Firmenteams" team={team} />)}
 
         <div className="page"><h2>Beste Leistung eines Schwimmvereins</h2></div>
         {results.teamsClub.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Leistung eines Schwimmvereins" team={team} />)}
-        <div className="page"><h2>Beste Durchschnittsleistung eines Schwimmvereins</h2></div>
-        {results.teamsClubAvg.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Durchschnittsleistung eines Schwimmvereins" team={team} />)}
-        <Footer />
-    </div>
-
-    return <div className="print">
-        
-        
-
-
+        <div className="page"><h2>Beste Leistung im Durchschnitt eines Schwimmvereins</h2></div>
+        {results.teamsClubAvg.slice(0, 3).map((team, i) => <TeamCert key={i} rank={++i} title="Beste Leistung im Durchschnitt eines Schwimmvereins" team={team} />)}
         <Footer />
     </div>
 }
