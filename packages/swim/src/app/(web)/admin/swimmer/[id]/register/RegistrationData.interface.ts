@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const RegistrationDataSchema = z.object({
     regNr: z.number().min(0).max(999),
-    capColor: z.enum(["R", "Y", "G", "B"]),
+    capColor: z.enum(["W", "Y", "G", "B", "Z1", "Z2"]),
     capNr: z.number().min(1).max(100),
     breakfast: z.boolean(),
     distanceRating: z.boolean(),

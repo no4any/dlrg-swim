@@ -84,7 +84,7 @@ export default function SwimmerOverview({ swimmer, distances }: { swimmer: Swimm
             <div><H2>Herkunft</H2><span>{swimmer.city?.trim() || <b><i>Keine Angabe</i></b>}</span></div>
             <div><H2>Geburtdatum</H2><span>{swimmer.birthday ? birthdayToReadable(swimmer.birthday) : <b><i>Keine Angabe</i></b>}</span></div>
             <div><H2>Alter</H2><span>{swimmer.birthday ? getAge(new Date(swimmer.birthday)) : <b><i>Keine Angabe</i></b>}</span></div>
-            {swimmer.status === "ANNOUNCED" ? <>
+            {swimmer.status !== "ANNOUNCED" ? <>
                 <div><H2>Bandnummer</H2><span>{swimmer.regNr}</span></div>
                 <div><H2>Bandekappe</H2><span>{swimmer.capColor} - {swimmer.capNr}</span></div>
             </> : <></>}

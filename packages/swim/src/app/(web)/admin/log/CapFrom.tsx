@@ -18,7 +18,7 @@ export default function CapForm({ onSwimmer }: RegFormProps) {
             <label className="block text-sm font-medium">
                 Farbe der Badekappe
                 <select name="capColor" value={capColor} onChange={evnt => setCapColor(evnt.target.value)} className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-200 text-sm focus:ring-dlrg-blue focus:border-dlrg-blue">
-                    <option value="R">Rot</option>
+                    <option value="W">Weiß</option>
                     <option value="Y">Gelb</option>
                     <option value="G">Grün</option>
                     <option value="B">Blau</option>

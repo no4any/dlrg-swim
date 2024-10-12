@@ -22,7 +22,7 @@ export default function RegisterForm({ swimmer }: { swimmer: Swimmer }) {
         <div>{swimmer.email}</div>
         <H2>Registrierung</H2>
         {swimmer.birthday ? <div className="block bg-dlrg-yellow rounded p-2 my-2"><b>WARNUNG: </b>KEINE Teilnahme an Alterswertung</div> : <></>}
-        {!swimmer.gender ||  swimmer.gender === "0"? <div className="block bg-dlrg-yellow rounded p-2 my-2"><b>WARNUNG: </b>Einzelwertung NICHT möglich (angabe Geschlecht fehlt)</div> : <></>}
+        {!swimmer.gender ||  swimmer.gender === "0"? <div className="block bg-dlrg-yellow rounded p-2 my-2"><b>WARNUNG: </b>Einzelwertung NICHT möglich - <b>KEIN Pokal oder Siegerehrung möglich!!!</b> (angabe Geschlecht fehlt)</div> : <></>}
         <form action={formAction}>
             <input name="id" type="hidden" value={swimmer._id?.toString() || ""} />
             <div className="pb-4">
@@ -33,7 +33,7 @@ export default function RegisterForm({ swimmer }: { swimmer: Swimmer }) {
                     Farbe der Badekappe
                     <select name="capColor" className="block w-full p-2 text-black border border-dlrg-black rounded-lg bg-dlrg-black-200 text-sm focus:ring-dlrg-blue focus:border-dlrg-blue">
                         <option value="0">Auswahl</option>
-                        <option value="R">Rot</option>
+                        <option value="W">Weiß</option>
                         <option value="Y">Gelb</option>
                         <option value="G">Grün</option>
                         <option value="B">Blau</option>

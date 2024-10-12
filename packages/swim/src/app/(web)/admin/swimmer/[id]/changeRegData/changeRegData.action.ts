@@ -44,6 +44,12 @@ export default async function changeRegDataAction(_prevState: ChangeRegDataStatu
 
     const capColor = form.get("capColor")?.toString() || "0";
 
+    if(!["W", "Y", "G", "B", "Z1", "Z2"].includes(capColor)) {
+        return {
+            error: true
+        }
+    }
+
     console.log(await findByCap(capColor, capNr));
 
     const foundCap = await findByCap(capColor, capNr);

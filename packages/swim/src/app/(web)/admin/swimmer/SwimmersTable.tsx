@@ -24,7 +24,8 @@ export default function SwimmersTable({ swimmers }: { swimmers: Swimmer[] }) {
                     swimmer.email.toLocaleLowerCase().includes(query) ||
                     `${swimmer.regNr}`.includes(query) ||
                     `${swimmer.capNr}`.includes(query) ||
-                    !!swimmer.capColor?.includes(query)
+                    !!swimmer.capColor?.includes(query) ||
+                    `${swimmer.capColor}-${swimmer.capNr}`.toLowerCase().includes(query)
             })
         )
     }, [searchString, searchStatus, swimmers])
