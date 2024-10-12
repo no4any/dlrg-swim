@@ -9,7 +9,7 @@ function dateToString(date: Date) {
     const hours = date.getHours();
     const minutes = date.getMinutes();
 
-    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} um ${hours < 10 ? "0" : ""}${date.getHours()}:${minutes < 10 ? "0" : ""}${date.getMinutes()} Uhr`
+    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} um ${hours < 10 ? "0" : ""}${date.getHours()}:${minutes < 10 ? "0" : ""}${date.getMinutes()} Uhr (GMT)`
 }
 
 export default async function RankPage() {
