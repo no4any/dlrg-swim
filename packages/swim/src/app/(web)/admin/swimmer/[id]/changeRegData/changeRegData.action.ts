@@ -44,7 +44,7 @@ export default async function changeRegDataAction(_prevState: ChangeRegDataStatu
 
     const capColor = form.get("capColor")?.toString() || "0";
 
-    if(!["W", "Y", "G", "B", "Z1", "Z2"].includes(capColor)) {
+    if(!["O", "W", "Y", "G", "B", "Z1", "Z2"].includes(capColor)) {
         return {
             error: true
         }

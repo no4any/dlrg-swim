@@ -37,6 +37,7 @@ export default function RegisterForm({ swimmer }: { swimmer: Swimmer }) {
                         <option value="Y">Gelb</option>
                         <option value="G">Grün</option>
                         <option value="B">Blau</option>
+                        <option value="O">Orange</option>
                     </select>
                 </label>
             </div>

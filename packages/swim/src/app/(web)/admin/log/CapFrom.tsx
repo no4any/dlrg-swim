@@ -22,6 +22,7 @@ export default function CapForm({ onSwimmer }: RegFormProps) {
                     <option value="Y">Gelb</option>
                     <option value="G">Grün</option>
                     <option value="B">Blau</option>
+                    <option value="O">Orange</option>
                 </select>
             </label>
         </div>

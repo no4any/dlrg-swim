@@ -42,6 +42,7 @@ export default function ChangeRegDataForm({ swimmer }: { swimmer: Swimmer }) {
                     <option value="Y">Gelb</option>
                     <option value="G">Grün</option>
                     <option value="B">Blau</option>
+                    <option value="O">Orange</option>
                     <option value="Z1">Zurückgegeben 1</option>
                     <option value="Z2">Zurückgegeben 2</option>
                 </select>
