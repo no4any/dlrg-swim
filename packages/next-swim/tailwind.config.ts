@@ -11,8 +11,20 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-      },
-    },
+        red: {
+          DEFAULT: "#e30613"
+        },
+        yellow: {
+          DEFAULT: "#ffed00"
+        },
+        black: {
+          DEFAULT: "#575756"
+        },
+        blue: {
+          DEFAULT: "#0069b4"
+        }
+      }
+    }
   },
   plugins: [],
 };
