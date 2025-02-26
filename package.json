@@ -9,8 +9,6 @@
   ],
   "scripts": {
     "build": "yarn workspaces run build",
-    "start:swim": "yarn workspace @dlrg-swim/swim run start",
-    "start:proxy": "yarn workspace @dlrg-swim/proxy run start",
-    "dev": "yarn workspace @dlrg-swim/swim run dev"
+    "start:proxy": "yarn workspace @dlrg-swim/proxy run start"
   }
 }
