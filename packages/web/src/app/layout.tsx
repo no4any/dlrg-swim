@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
-      <body className="min-h-screen bg-fixed bg-linear-45 from-dlrg-red to-dlrg-blue">
+      <body className="bg-[url(/24h.jpg)] bg-cover bg-center bg-fixed">
         {children}
       </body>
     </html>
